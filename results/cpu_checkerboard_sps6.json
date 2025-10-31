@@ -1,0 +1,76 @@
+{
+  "task": "ising28_uncond",
+  "hardware": "AMD Ryzen 9 7950X (WSL2, JAX CPU backend)",
+  "hardware_class": "cpu",
+  "method": "block-gibbs",
+  "recipe_name": "cpu-checkerboard-sps6",
+  "commit": "local-run",
+  "contributor": "@bdekraker",
+  "submission_url": "https://github.com/bdekraker/THRML-Testing",
+  "seeds": [
+    0
+  ],
+  "config": {
+    "H": 28,
+    "W": 28,
+    "J": 0.3,
+    "beta": 1.0,
+    "steps_per_sample": 6,
+    "warmup": 100,
+    "n_samples": 128,
+    "chains": 4,
+    "devices": 1,
+    "blocking": "checkerboard",
+    "schedule": "fixed"
+  },
+  "env": {
+    "jax": "0.4.x",
+    "thrml": "workspace local"
+  },
+  "power_watts_avg": null,
+  "metrics_mean": {
+    "samples_per_sec": 497.63281347398316,
+    "rho1": 0.35141730607225674,
+    "tau_int": 2.1142843961991433,
+    "ESS_per_sec": 240.7194687656803
+  },
+  "scaling": {
+    "chains_list": [
+      1,
+      2,
+      4
+    ],
+    "ESS_per_sec_list": [
+      119.92711125876434,
+      166.19950086915904,
+      240.7194687656803
+    ],
+    "samples_per_sec_list": [
+      196.32434583041396,
+      305.375336235381,
+      497.63281347398316
+    ]
+  },
+  "J_sweep": [
+    {
+      "J": 0.3,
+      "ESS_per_sec": 146.3448612615745,
+      "rho1": 0.35141730607225674
+    },
+    {
+      "J": 0.45,
+      "ESS_per_sec": 17.016603509396422,
+      "rho1": 0.9295133553349508
+    },
+    {
+      "J": 0.6,
+      "ESS_per_sec": 25.388666707132863,
+      "rho1": 0.8881209788497967
+    }
+  ],
+  "figures": [
+    "outputs/autocorr_blockings_sps4.png",
+    "outputs/autocorr_blockings_sps6.png"
+  ],
+  "notes": "Schedule sweep on CPU: checkerboard blocks with steps_per_sample=6 improves ESS/sec by ~9% over sps=4 while keeping lag-1 below 0.36."
+}
