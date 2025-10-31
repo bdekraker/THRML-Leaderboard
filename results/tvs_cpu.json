@@ -1,0 +1,38 @@
+{
+  "task": "ising28_uncond",
+  "hardware": "arm (JAX CPU)",
+  "hardware_class": "cpu",
+  "method": "thermal-tvs",
+  "recipe_name": "tvs-cpu-thermal",
+  "commit": "main",
+  "contributor": "SoundSafe-Dev",
+  "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "config": {
+    "H": 28,
+    "W": 28,
+    "steps_per_sample": 2,
+    "warmup": 100,
+    "n_samples": 1000,
+    "chains": 1,
+    "devices": 1,
+    "blocking": "thermal-algorithm",
+    "schedule": "fixed"
+  },
+  "env": {
+    "jax": "0.8.0",
+    "thrml": "thermal-algorithms"
+  },
+  "power_watts_avg": null,
+  "metrics_mean": {
+    "samples_per_sec": 2886.9264300837986,
+    "rho1": 0.05540415644645691,
+    "tau_int": 1.117307643950725,
+    "ESS_per_sec": 2583.8241112141864
+  },
+  "notes": "Thermo-Verifiable Sensing thermal algorithm benchmark on CPU"
+}

@@ -1,108 +1,283 @@
 [
   {
     "task": "ising28_uncond",
-    "hardware": "AMD Ryzen 9 7950X (WSL2, JAX CPU backend)",
-    "hardware_class": "cpu",
-    "method": "block-gibbs",
-    "recipe_name": "cpu-checkerboard-sps4",
-    "commit": "local-run",
-    "contributor": "@bdekraker",
-    "submission_url": null,
+    "hardware": "NVIDIA A100-SXM4-80GB x8 (JAX CUDA)",
+    "hardware_class": "1xA100",
+    "method": "thermal-gpu-bpp",
+    "recipe_name": "bpp-gpu-thermal",
+    "commit": "main",
+    "contributor": "SoundSafe-Dev",
+    "submission_url": "https://github.com/SoundSafe-Dev/thrml",
     "seeds": [
-      0
+      42,
+      123,
+      456
     ],
     "config": {
       "H": 28,
       "W": 28,
-      "J": 0.3,
-      "beta": 1.0,
-      "steps_per_sample": 4,
+      "steps_per_sample": 2,
       "warmup": 100,
-      "n_samples": 128,
-      "chains": 4,
+      "n_samples": 1000,
+      "chains": 1,
       "devices": 1,
-      "blocking": "checkerboard",
+      "blocking": "thermal-algorithm",
       "schedule": "fixed"
     },
     "env": {
-      "jax": "0.4.x",
-      "thrml": "workspace local"
+      "jax": "0.6.0",
+      "thrml": "thermal-algorithms"
     },
     "power_watts_avg": null,
     "metrics_mean": {
-      "samples_per_sec": 579.0697515387598,
-      "rho1": 0.4137003239393893,
-      "tau_int": 0.0,
-      "ESS_per_sec": 0.0,
-      "tau_int_calc": 2.411224808170017,
-      "ESS_per_sec_calc": 240.15585339727858,
-      "badges": [
-        "frontier"
-      ],
-      "scaling_slope": 0.7788527422308731,
-      "robustJ_ratio": 0.12151532835495527
+      "samples_per_sec": 467.19950226702787,
+      "rho1": -0.025159327313303947,
+      "tau_int": 0.9509162592721261,
+      "ESS_per_sec": 491.31508448981964,
+      "tau_int_calc": 0.9509162592721261,
+      "ESS_per_sec_calc": 491.31508448981964,
+      "badges": []
     },
-    "scaling": {
-      "chains_list": [
-        1,
-        2,
-        4
-      ],
-      "ESS_per_sec_list": [
-        81.74089606535193,
-        123.97114757745958,
-        240.63315735573033
-      ],
-      "samples_per_sec_list": [
-        223.6901550583005,
-        316.17196941522684,
-        579.0697515387598
-      ]
-    },
-    "J_sweep": [
-      {
-        "J": 0.3,
-        "ESS_per_sec": 240.63315735573033,
-        "rho1": 0.4137003239393893
-      },
-      {
-        "J": 0.4,
-        "ESS_per_sec": 38.706358969987576,
-        "rho1": 0.8798135662362859
-      },
-      {
-        "J": 0.5,
-        "ESS_per_sec": 20.74305399157495,
-        "rho1": 0.9312908815629974
-      },
-      {
-        "J": 0.6,
-        "ESS_per_sec": 37.738180266767436,
-        "rho1": 0.8798670116721135
-      }
-    ],
-    "figures": [],
-    "notes": "Benchmark collected with pipelines/bench.py on WSL2 CPU; single-seed run (seed=0).",
-    "_source_file": "results\\cpu_checkerboard_sps4.json"
+    "notes": "Boltzmann Policy Planner thermal algorithm benchmark on GPU (A100)",
+    "_source_file": "results/bpp_gpu.json"
   },
   {
     "task": "ising28_uncond",
-    "hardware": "AMD Ryzen 9 7950X (WSL2, JAX CPU backend)",
+    "hardware": "NVIDIA A100-SXM4-80GB x8 (JAX CUDA)",
+    "hardware_class": "1xA100",
+    "method": "thermal-gpu-ppts",
+    "recipe_name": "ppts-gpu-thermal",
+    "commit": "main",
+    "contributor": "SoundSafe-Dev",
+    "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "config": {
+      "H": 28,
+      "W": 28,
+      "steps_per_sample": 2,
+      "warmup": 100,
+      "n_samples": 1000,
+      "chains": 1,
+      "devices": 1,
+      "blocking": "thermal-algorithm",
+      "schedule": "fixed"
+    },
+    "env": {
+      "jax": "0.6.0",
+      "thrml": "thermal-algorithms"
+    },
+    "power_watts_avg": null,
+    "metrics_mean": {
+      "samples_per_sec": 447.5723758032464,
+      "rho1": 0.8500851392745972,
+      "tau_int": 12.340905566816186,
+      "ESS_per_sec": 36.267385191467355,
+      "tau_int_calc": 12.340905566816186,
+      "ESS_per_sec_calc": 36.267385191467355,
+      "badges": []
+    },
+    "notes": "Probabilistic Phase Time Sync thermal algorithm benchmark on GPU (A100)",
+    "_source_file": "results/ppts_gpu.json"
+  },
+  {
+    "task": "ising28_uncond",
+    "hardware": "arm (JAX CPU)",
+    "hardware_class": "cpu",
+    "method": "thermal-srsl",
+    "recipe_name": "srsl-cpu-thermal",
+    "commit": "main",
+    "contributor": "SoundSafe-Dev",
+    "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "config": {
+      "H": 28,
+      "W": 28,
+      "steps_per_sample": 2,
+      "warmup": 100,
+      "n_samples": 1000,
+      "chains": 1,
+      "devices": 1,
+      "blocking": "thermal-algorithm",
+      "schedule": "fixed"
+    },
+    "env": {
+      "jax": "0.8.0",
+      "thrml": "thermal-algorithms"
+    },
+    "power_watts_avg": null,
+    "metrics_mean": {
+      "samples_per_sec": 150.70955724105602,
+      "rho1": 0.49268653988838196,
+      "tau_int": 2.942335769210547,
+      "ESS_per_sec": 51.22106009046433,
+      "tau_int_calc": 2.942335769210547,
+      "ESS_per_sec_calc": 51.22106009046433,
+      "badges": [
+        "frontier"
+      ]
+    },
+    "notes": "Stochastic-Resonance Signal Lifter thermal algorithm benchmark on CPU",
+    "_source_file": "results/srsl_cpu.json"
+  },
+  {
+    "task": "ising28_uncond",
+    "hardware": "NVIDIA A100-SXM4-80GB x8 (JAX CUDA)",
+    "hardware_class": "1xA100",
+    "method": "thermal-gpu-labi",
+    "recipe_name": "labi-gpu-thermal",
+    "commit": "main",
+    "contributor": "SoundSafe-Dev",
+    "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "config": {
+      "H": 28,
+      "W": 28,
+      "steps_per_sample": 2,
+      "warmup": 100,
+      "n_samples": 1000,
+      "chains": 1,
+      "devices": 1,
+      "blocking": "thermal-algorithm",
+      "schedule": "fixed"
+    },
+    "env": {
+      "jax": "0.6.0",
+      "thrml": "thermal-algorithms"
+    },
+    "power_watts_avg": null,
+    "metrics_mean": {
+      "samples_per_sec": 167.2791856342421,
+      "rho1": 0.0,
+      "tau_int": 1.0,
+      "ESS_per_sec": 167.2791856342421,
+      "tau_int_calc": 1.0,
+      "ESS_per_sec_calc": 167.2791856342421,
+      "badges": [
+        "frontier"
+      ]
+    },
+    "notes": "Landauer-Aware Bayesian Inference thermal algorithm benchmark on GPU (A100)",
+    "_source_file": "results/labi_gpu.json"
+  },
+  {
+    "task": "ising28_uncond",
+    "hardware": "arm (JAX CPU)",
+    "hardware_class": "cpu",
+    "method": "thermal-ref",
+    "recipe_name": "ref-cpu-thermal",
+    "commit": "main",
+    "contributor": "SoundSafe-Dev",
+    "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "config": {
+      "H": 28,
+      "W": 28,
+      "steps_per_sample": 2,
+      "warmup": 100,
+      "n_samples": 1000,
+      "chains": 1,
+      "devices": 1,
+      "blocking": "thermal-algorithm",
+      "schedule": "fixed"
+    },
+    "env": {
+      "jax": "0.8.0",
+      "thrml": "thermal-algorithms"
+    },
+    "power_watts_avg": null,
+    "metrics_mean": {
+      "samples_per_sec": 2338.0169121309245,
+      "rho1": 0.0673612430691719,
+      "tau_int": 1.1444530212123019,
+      "ESS_per_sec": 2042.9120888285117,
+      "tau_int_calc": 1.1444530212123019,
+      "ESS_per_sec_calc": 2042.9120888285117,
+      "badges": [
+        "frontier"
+      ]
+    },
+    "notes": "Reservoir-EBM Front-End thermal algorithm benchmark on CPU",
+    "_source_file": "results/ref_cpu.json"
+  },
+  {
+    "task": "ising28_uncond",
+    "hardware": "arm (JAX CPU)",
+    "hardware_class": "cpu",
+    "method": "thermal-taps",
+    "recipe_name": "taps-cpu-thermal",
+    "commit": "main",
+    "contributor": "SoundSafe-Dev",
+    "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "config": {
+      "H": 28,
+      "W": 28,
+      "steps_per_sample": 2,
+      "warmup": 100,
+      "n_samples": 1000,
+      "chains": 1,
+      "devices": 1,
+      "blocking": "thermal-algorithm",
+      "schedule": "fixed"
+    },
+    "env": {
+      "jax": "0.8.0",
+      "thrml": "thermal-algorithms"
+    },
+    "power_watts_avg": null,
+    "metrics_mean": {
+      "samples_per_sec": 3154.514150392387,
+      "rho1": -0.27614521980285645,
+      "tau_int": 0.5672197560000007,
+      "ESS_per_sec": 5561.361565820325,
+      "tau_int_calc": 0.5672197560000007,
+      "ESS_per_sec_calc": 5561.361565820325,
+      "badges": [
+        "frontier"
+      ]
+    },
+    "notes": "Thermodynamic Active Perception Scheduling thermal algorithm benchmark on CPU",
+    "_source_file": "results/taps_cpu.json"
+  },
+  {
+    "task": "ising28_uncond",
+    "hardware": "AMD 7950X (WSL2, JAX CPU)",
     "hardware_class": "cpu",
     "method": "block-gibbs",
-    "recipe_name": "cpu-checkerboard-sps6",
-    "commit": "local-run",
-    "contributor": "@bdekraker",
-    "submission_url": "https://github.com/bdekraker/THRML-Testing",
+    "recipe_name": "checkerboard-sps2",
+    "commit": "deadbeef",
+    "contributor": "@anon-dev-42",
+    "submission_url": "https://github.com/bdekraker/THRML-Leaderboard/tree/deadbeef",
     "seeds": [
-      0
+      0,
+      1
     ],
     "config": {
       "H": 28,
       "W": 28,
       "J": 0.3,
       "beta": 1.0,
-      "steps_per_sample": 6,
+      "steps_per_sample": 2,
       "warmup": 100,
       "n_samples": 128,
       "chains": 4,
@@ -112,21 +287,21 @@
     },
     "env": {
       "jax": "0.4.x",
-      "thrml": "workspace local"
+      "thrml": "x.y.z"
     },
     "power_watts_avg": null,
     "metrics_mean": {
-      "samples_per_sec": 497.63281347398316,
-      "rho1": 0.35141730607225674,
-      "tau_int": 2.1142843961991433,
-      "ESS_per_sec": 240.7194687656803,
-      "tau_int_calc": 2.083646879148481,
-      "ESS_per_sec_calc": 238.8278064070768,
-      "badges": [
-        "frontier"
-      ],
-      "scaling_slope": 0.502597495121698,
-      "robustJ_ratio": 0.17348519441180488
+      "samples_per_sec": 584.7,
+      "rho1": 0.6005,
+      "tau_int": 4.01,
+      "ESS_per_sec": 145.9,
+      "cnn_acc": null,
+      "FID": null,
+      "tau_int_calc": 4.006257822277847,
+      "ESS_per_sec_calc": 145.94667291471416,
+      "badges": [],
+      "scaling_slope": 0.581887436289912,
+      "robustJ_ratio": 0.21736158578263837
     },
     "scaling": {
       "chains_list": [
@@ -135,39 +310,83 @@
         4
       ],
       "ESS_per_sec_list": [
-        119.92711125876434,
-        166.19950086915904,
-        240.7194687656803
+        65.3,
+        100.5,
+        146.3
       ],
       "samples_per_sec_list": [
-        196.32434583041396,
-        305.375336235381,
-        497.63281347398316
+        236.0,
+        361.0,
+        584.7
       ]
     },
     "J_sweep": [
       {
         "J": 0.3,
-        "ESS_per_sec": 146.3448612615745,
-        "rho1": 0.35141730607225674
+        "ESS_per_sec": 146.3,
+        "rho1": 0.6
       },
       {
-        "J": 0.45,
-        "ESS_per_sec": 17.016603509396422,
-        "rho1": 0.9295133553349508
+        "J": 0.5,
+        "ESS_per_sec": 32.3,
+        "rho1": 0.87
       },
       {
         "J": 0.6,
-        "ESS_per_sec": 25.388666707132863,
-        "rho1": 0.8881209788497967
+        "ESS_per_sec": 31.3,
+        "rho1": 0.88
       }
     ],
     "figures": [
-      "outputs/autocorr_blockings_sps4.png",
-      "outputs/autocorr_blockings_sps6.png"
+      "outputs/bench_tradeoff_ess.png",
+      "outputs/bench_chain_scaling.png"
     ],
-    "notes": "Schedule sweep on CPU: checkerboard blocks with steps_per_sample=6 improves ESS/sec by ~9% over sps=4 while keeping lag-1 below 0.36.",
-    "_source_file": "results\\cpu_checkerboard_sps6.json"
+    "notes": "CPU baseline; good scaling to 4 chains.",
+    "_source_file": "results/sample_checkerboard_cpu.json"
+  },
+  {
+    "task": "ising28_uncond",
+    "hardware": "arm (JAX CPU)",
+    "hardware_class": "cpu",
+    "method": "thermal-labi",
+    "recipe_name": "labi-cpu-thermal",
+    "commit": "main",
+    "contributor": "SoundSafe-Dev",
+    "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "config": {
+      "H": 28,
+      "W": 28,
+      "steps_per_sample": 2,
+      "warmup": 100,
+      "n_samples": 1000,
+      "chains": 1,
+      "devices": 1,
+      "blocking": "thermal-algorithm",
+      "schedule": "fixed"
+    },
+    "env": {
+      "jax": "0.8.0",
+      "thrml": "thermal-algorithms"
+    },
+    "power_watts_avg": null,
+    "metrics_mean": {
+      "samples_per_sec": 1330.0660261903581,
+      "rho1": 0.0,
+      "tau_int": 1.0,
+      "ESS_per_sec": 1330.0660261903581,
+      "tau_int_calc": 1.0,
+      "ESS_per_sec_calc": 1330.0660261903581,
+      "badges": [
+        "frontier"
+      ]
+    },
+    "notes": "Landauer-Aware Bayesian Inference thermal algorithm benchmark on CPU",
+    "_source_file": "results/labi_cpu.json"
   },
   {
     "task": "ising28_uncond",
@@ -249,27 +468,114 @@
       "outputs/bench_J_sweep.png"
     ],
     "notes": "RunPod GPU sweep: checkerboard blocks, steps_per_sample=6, chains=8 achieved the highest ESS/sec. Includes scaling and J sweep.",
-    "_source_file": "results\\gpu_checkerboard_sps6.json"
+    "_source_file": "results/gpu_checkerboard_sps6.json"
   },
   {
     "task": "ising28_uncond",
-    "hardware": "AMD 7950X (WSL2, JAX CPU)",
+    "hardware": "NVIDIA A100-SXM4-80GB x8 (JAX CUDA)",
+    "hardware_class": "1xA100",
+    "method": "thermal-gpu-ref",
+    "recipe_name": "ref-gpu-thermal",
+    "commit": "main",
+    "contributor": "SoundSafe-Dev",
+    "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "config": {
+      "H": 28,
+      "W": 28,
+      "steps_per_sample": 2,
+      "warmup": 100,
+      "n_samples": 1000,
+      "chains": 1,
+      "devices": 1,
+      "blocking": "thermal-algorithm",
+      "schedule": "fixed"
+    },
+    "env": {
+      "jax": "0.6.0",
+      "thrml": "thermal-algorithms"
+    },
+    "power_watts_avg": null,
+    "metrics_mean": {
+      "samples_per_sec": 396.4507647285059,
+      "rho1": -0.06976870447397232,
+      "tau_int": 0.8695630108037624,
+      "ESS_per_sec": 455.9195363681062,
+      "tau_int_calc": 0.8695630108037624,
+      "ESS_per_sec_calc": 455.9195363681062,
+      "badges": [
+        "frontier"
+      ]
+    },
+    "notes": "Reservoir-EBM Front-End thermal algorithm benchmark on GPU (A100)",
+    "_source_file": "results/ref_gpu.json"
+  },
+  {
+    "task": "ising28_uncond",
+    "hardware": "NVIDIA A100-SXM4-80GB x8 (JAX CUDA)",
+    "hardware_class": "1xA100",
+    "method": "thermal-gpu-srsl",
+    "recipe_name": "srsl-gpu-thermal",
+    "commit": "main",
+    "contributor": "SoundSafe-Dev",
+    "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "config": {
+      "H": 28,
+      "W": 28,
+      "steps_per_sample": 2,
+      "warmup": 100,
+      "n_samples": 1000,
+      "chains": 1,
+      "devices": 1,
+      "blocking": "thermal-algorithm",
+      "schedule": "fixed"
+    },
+    "env": {
+      "jax": "0.6.0",
+      "thrml": "thermal-algorithms"
+    },
+    "power_watts_avg": null,
+    "metrics_mean": {
+      "samples_per_sec": 22.109375542105656,
+      "rho1": 0.5309642553329468,
+      "tau_int": 3.2640673397284625,
+      "ESS_per_sec": 6.77356599632682,
+      "tau_int_calc": 3.2640673397284625,
+      "ESS_per_sec_calc": 6.77356599632682,
+      "badges": [
+        "frontier"
+      ]
+    },
+    "notes": "Stochastic-Resonance Signal Lifter thermal algorithm benchmark on GPU (A100)",
+    "_source_file": "results/srsl_gpu.json"
+  },
+  {
+    "task": "ising28_uncond",
+    "hardware": "AMD Ryzen 9 7950X (WSL2, JAX CPU backend)",
     "hardware_class": "cpu",
     "method": "block-gibbs",
-    "recipe_name": "checkerboard-sps2",
-    "commit": "deadbeef",
-    "contributor": "@anon-dev-42",
-    "submission_url": "https://github.com/bdekraker/THRML-Leaderboard/tree/deadbeef",
+    "recipe_name": "cpu-checkerboard-sps6",
+    "commit": "local-run",
+    "contributor": "@bdekraker",
+    "submission_url": "https://github.com/bdekraker/THRML-Testing",
     "seeds": [
-      0,
-      1
+      0
     ],
     "config": {
       "H": 28,
       "W": 28,
       "J": 0.3,
       "beta": 1.0,
-      "steps_per_sample": 2,
+      "steps_per_sample": 6,
       "warmup": 100,
       "n_samples": 128,
       "chains": 4,
@@ -279,21 +585,21 @@
     },
     "env": {
       "jax": "0.4.x",
-      "thrml": "x.y.z"
+      "thrml": "workspace local"
     },
     "power_watts_avg": null,
     "metrics_mean": {
-      "samples_per_sec": 584.7,
-      "rho1": 0.6005,
-      "tau_int": 4.01,
-      "ESS_per_sec": 145.9,
-      "cnn_acc": null,
-      "FID": null,
-      "tau_int_calc": 4.006257822277847,
-      "ESS_per_sec_calc": 145.94667291471416,
-      "badges": [],
-      "scaling_slope": 0.5818874362899131,
-      "robustJ_ratio": 0.21736158578263837
+      "samples_per_sec": 497.63281347398316,
+      "rho1": 0.35141730607225674,
+      "tau_int": 2.1142843961991433,
+      "ESS_per_sec": 240.7194687656803,
+      "tau_int_calc": 2.083646879148481,
+      "ESS_per_sec_calc": 238.8278064070768,
+      "badges": [
+        "frontier"
+      ],
+      "scaling_slope": 0.5025974951216974,
+      "robustJ_ratio": 0.17348519441180488
     },
     "scaling": {
       "chains_list": [
@@ -302,38 +608,550 @@
         4
       ],
       "ESS_per_sec_list": [
-        65.3,
-        100.5,
-        146.3
+        119.92711125876434,
+        166.19950086915904,
+        240.7194687656803
       ],
       "samples_per_sec_list": [
-        236.0,
-        361.0,
-        584.7
+        196.32434583041396,
+        305.375336235381,
+        497.63281347398316
       ]
     },
     "J_sweep": [
       {
         "J": 0.3,
-        "ESS_per_sec": 146.3,
-        "rho1": 0.6
+        "ESS_per_sec": 146.3448612615745,
+        "rho1": 0.35141730607225674
       },
       {
-        "J": 0.5,
-        "ESS_per_sec": 32.3,
-        "rho1": 0.87
+        "J": 0.45,
+        "ESS_per_sec": 17.016603509396422,
+        "rho1": 0.9295133553349508
       },
       {
         "J": 0.6,
-        "ESS_per_sec": 31.3,
-        "rho1": 0.88
+        "ESS_per_sec": 25.388666707132863,
+        "rho1": 0.8881209788497967
       }
     ],
     "figures": [
-      "outputs/bench_tradeoff_ess.png",
-      "outputs/bench_chain_scaling.png"
+      "outputs/autocorr_blockings_sps4.png",
+      "outputs/autocorr_blockings_sps6.png"
     ],
-    "notes": "CPU baseline; good scaling to 4 chains.",
-    "_source_file": "results\\sample_checkerboard_cpu.json"
+    "notes": "Schedule sweep on CPU: checkerboard blocks with steps_per_sample=6 improves ESS/sec by ~9% over sps=4 while keeping lag-1 below 0.36.",
+    "_source_file": "results/cpu_checkerboard_sps6.json"
+  },
+  {
+    "task": "ising28_uncond",
+    "hardware": "arm (JAX CPU)",
+    "hardware_class": "cpu",
+    "method": "thermal-ppts",
+    "recipe_name": "ppts-cpu-thermal",
+    "commit": "main",
+    "contributor": "SoundSafe-Dev",
+    "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "config": {
+      "H": 28,
+      "W": 28,
+      "steps_per_sample": 2,
+      "warmup": 100,
+      "n_samples": 1000,
+      "chains": 1,
+      "devices": 1,
+      "blocking": "thermal-algorithm",
+      "schedule": "fixed"
+    },
+    "env": {
+      "jax": "0.8.0",
+      "thrml": "thermal-algorithms"
+    },
+    "power_watts_avg": null,
+    "metrics_mean": {
+      "samples_per_sec": 3062.89540876833,
+      "rho1": 0.7239968180656433,
+      "tau_int": 6.246293270907546,
+      "ESS_per_sec": 490.3540829621199,
+      "tau_int_calc": 6.246293270907546,
+      "ESS_per_sec_calc": 490.3540829621199,
+      "badges": []
+    },
+    "notes": "Probabilistic Phase Time Sync thermal algorithm benchmark on CPU",
+    "_source_file": "results/ppts_cpu.json"
+  },
+  {
+    "task": "ising28_uncond",
+    "hardware": "arm (JAX CPU)",
+    "hardware_class": "cpu",
+    "method": "thermal-bpp",
+    "recipe_name": "bpp-cpu-thermal",
+    "commit": "main",
+    "contributor": "SoundSafe-Dev",
+    "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "config": {
+      "H": 28,
+      "W": 28,
+      "steps_per_sample": 2,
+      "warmup": 100,
+      "n_samples": 1000,
+      "chains": 1,
+      "devices": 1,
+      "blocking": "thermal-algorithm",
+      "schedule": "fixed"
+    },
+    "env": {
+      "jax": "0.8.0",
+      "thrml": "thermal-algorithms"
+    },
+    "power_watts_avg": null,
+    "metrics_mean": {
+      "samples_per_sec": 4025.0060155633323,
+      "rho1": -0.012194248847663403,
+      "tau_int": 0.9759053188426114,
+      "ESS_per_sec": 4124.38167704306,
+      "tau_int_calc": 0.9759053188426114,
+      "ESS_per_sec_calc": 4124.38167704306,
+      "badges": []
+    },
+    "notes": "Boltzmann Policy Planner thermal algorithm benchmark on CPU",
+    "_source_file": "results/bpp_cpu.json"
+  },
+  {
+    "task": "ising28_uncond",
+    "hardware": "NVIDIA A100-SXM4-80GB x8 (JAX CUDA)",
+    "hardware_class": "1xA100",
+    "method": "thermal-gpu-taps",
+    "recipe_name": "taps-gpu-thermal",
+    "commit": "main",
+    "contributor": "SoundSafe-Dev",
+    "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "config": {
+      "H": 28,
+      "W": 28,
+      "steps_per_sample": 2,
+      "warmup": 100,
+      "n_samples": 1000,
+      "chains": 1,
+      "devices": 1,
+      "blocking": "thermal-algorithm",
+      "schedule": "fixed"
+    },
+    "env": {
+      "jax": "0.6.0",
+      "thrml": "thermal-algorithms"
+    },
+    "power_watts_avg": null,
+    "metrics_mean": {
+      "samples_per_sec": 454.0179096323136,
+      "rho1": -0.27882876992225647,
+      "tau_int": 0.5639310336454079,
+      "ESS_per_sec": 805.0947412796471,
+      "tau_int_calc": 0.5639310336454079,
+      "ESS_per_sec_calc": 805.0947412796471,
+      "badges": [
+        "frontier"
+      ]
+    },
+    "notes": "Thermodynamic Active Perception Scheduling thermal algorithm benchmark on GPU (A100)",
+    "_source_file": "results/taps_gpu.json"
+  },
+  {
+    "task": "ising28_uncond",
+    "hardware": "NVIDIA A100-SXM4-80GB x8 (JAX CUDA)",
+    "hardware_class": "1xA100",
+    "method": "thermal-gpu-tcf",
+    "recipe_name": "tcf-gpu-thermal",
+    "commit": "main",
+    "contributor": "SoundSafe-Dev",
+    "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "config": {
+      "H": 28,
+      "W": 28,
+      "steps_per_sample": 2,
+      "warmup": 100,
+      "n_samples": 1000,
+      "chains": 1,
+      "devices": 1,
+      "blocking": "thermal-algorithm",
+      "schedule": "fixed"
+    },
+    "env": {
+      "jax": "0.6.0",
+      "thrml": "thermal-algorithms"
+    },
+    "power_watts_avg": null,
+    "metrics_mean": {
+      "samples_per_sec": 455.44668217188035,
+      "rho1": -0.2469511777162552,
+      "tau_int": 0.6039120342008304,
+      "ESS_per_sec": 754.1606333024687,
+      "tau_int_calc": 0.6039120342008304,
+      "ESS_per_sec_calc": 754.1606333024687,
+      "badges": []
+    },
+    "notes": "Thermodynamic Causal Fusion thermal algorithm benchmark on GPU (A100)",
+    "_source_file": "results/tcf_gpu.json"
+  },
+  {
+    "task": "ising28_uncond",
+    "hardware": "NVIDIA A100-SXM4-80GB x8 (JAX CUDA)",
+    "hardware_class": "1xA100",
+    "method": "thermal-gpu-tbro",
+    "recipe_name": "tbro-gpu-thermal",
+    "commit": "main",
+    "contributor": "SoundSafe-Dev",
+    "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "config": {
+      "H": 28,
+      "W": 28,
+      "steps_per_sample": 2,
+      "warmup": 100,
+      "n_samples": 1000,
+      "chains": 1,
+      "devices": 1,
+      "blocking": "thermal-algorithm",
+      "schedule": "fixed"
+    },
+    "env": {
+      "jax": "0.6.0",
+      "thrml": "thermal-algorithms"
+    },
+    "power_watts_avg": null,
+    "metrics_mean": {
+      "samples_per_sec": 472.28995347138004,
+      "rho1": 0.1426762044429779,
+      "tau_int": 1.3328408827152127,
+      "ESS_per_sec": 354.34833939760983,
+      "tau_int_calc": 1.3328408827152127,
+      "ESS_per_sec_calc": 354.34833939760983,
+      "badges": []
+    },
+    "notes": "Thermal Bandit Resource Orchestrator thermal algorithm benchmark on GPU (A100)",
+    "_source_file": "results/tbro_gpu.json"
+  },
+  {
+    "task": "ising28_uncond",
+    "hardware": "AMD Ryzen 9 7950X (WSL2, JAX CPU backend)",
+    "hardware_class": "cpu",
+    "method": "block-gibbs",
+    "recipe_name": "cpu-checkerboard-sps4",
+    "commit": "local-run",
+    "contributor": "@bdekraker",
+    "submission_url": null,
+    "seeds": [
+      0
+    ],
+    "config": {
+      "H": 28,
+      "W": 28,
+      "J": 0.3,
+      "beta": 1.0,
+      "steps_per_sample": 4,
+      "warmup": 100,
+      "n_samples": 128,
+      "chains": 4,
+      "devices": 1,
+      "blocking": "checkerboard",
+      "schedule": "fixed"
+    },
+    "env": {
+      "jax": "0.4.x",
+      "thrml": "workspace local"
+    },
+    "power_watts_avg": null,
+    "metrics_mean": {
+      "samples_per_sec": 579.0697515387598,
+      "rho1": 0.4137003239393893,
+      "tau_int": 0.0,
+      "ESS_per_sec": 0.0,
+      "tau_int_calc": 2.411224808170017,
+      "ESS_per_sec_calc": 240.15585339727858,
+      "badges": [
+        "frontier"
+      ],
+      "scaling_slope": 0.7788527422308734,
+      "robustJ_ratio": 0.12151532835495527
+    },
+    "scaling": {
+      "chains_list": [
+        1,
+        2,
+        4
+      ],
+      "ESS_per_sec_list": [
+        81.74089606535193,
+        123.97114757745958,
+        240.63315735573033
+      ],
+      "samples_per_sec_list": [
+        223.6901550583005,
+        316.17196941522684,
+        579.0697515387598
+      ]
+    },
+    "J_sweep": [
+      {
+        "J": 0.3,
+        "ESS_per_sec": 240.63315735573033,
+        "rho1": 0.4137003239393893
+      },
+      {
+        "J": 0.4,
+        "ESS_per_sec": 38.706358969987576,
+        "rho1": 0.8798135662362859
+      },
+      {
+        "J": 0.5,
+        "ESS_per_sec": 20.74305399157495,
+        "rho1": 0.9312908815629974
+      },
+      {
+        "J": 0.6,
+        "ESS_per_sec": 37.738180266767436,
+        "rho1": 0.8798670116721135
+      }
+    ],
+    "figures": [],
+    "notes": "Benchmark collected with pipelines/bench.py on WSL2 CPU; single-seed run (seed=0).",
+    "_source_file": "results/cpu_checkerboard_sps4.json"
+  },
+  {
+    "task": "ising28_uncond",
+    "hardware": "NVIDIA A100-SXM4-80GB x8 (JAX CUDA)",
+    "hardware_class": "1xA100",
+    "method": "thermal-gpu-tvs",
+    "recipe_name": "tvs-gpu-thermal",
+    "commit": "main",
+    "contributor": "SoundSafe-Dev",
+    "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "config": {
+      "H": 28,
+      "W": 28,
+      "steps_per_sample": 2,
+      "warmup": 100,
+      "n_samples": 1000,
+      "chains": 1,
+      "devices": 1,
+      "blocking": "thermal-algorithm",
+      "schedule": "fixed"
+    },
+    "env": {
+      "jax": "0.6.0",
+      "thrml": "thermal-algorithms"
+    },
+    "power_watts_avg": null,
+    "metrics_mean": {
+      "samples_per_sec": 464.3448776539751,
+      "rho1": 0.06382984668016434,
+      "tau_int": 1.1363637720211688,
+      "ESS_per_sec": 408.6234435545918,
+      "tau_int_calc": 1.1363637720211688,
+      "ESS_per_sec_calc": 408.6234435545918,
+      "badges": []
+    },
+    "notes": "Thermo-Verifiable Sensing thermal algorithm benchmark on GPU (A100)",
+    "_source_file": "results/tvs_gpu.json"
+  },
+  {
+    "task": "ising28_uncond",
+    "hardware": "NVIDIA A100-SXM4-80GB x8 (JAX CUDA)",
+    "hardware_class": "1xA100",
+    "method": "thermal-gpu-core-thrml",
+    "recipe_name": "core-thrml-gpu-thermal",
+    "commit": "main",
+    "contributor": "SoundSafe-Dev",
+    "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "config": {
+      "H": 28,
+      "W": 28,
+      "steps_per_sample": 2,
+      "warmup": 100,
+      "n_samples": 1000,
+      "chains": 1,
+      "devices": 1,
+      "blocking": "thermal-algorithm",
+      "schedule": "fixed"
+    },
+    "env": {
+      "jax": "0.6.0",
+      "thrml": "thermal-algorithms"
+    },
+    "power_watts_avg": null,
+    "metrics_mean": {
+      "samples_per_sec": 388.65795825814075,
+      "rho1": 0.6429181098937988,
+      "tau_int": 4.600956126352899,
+      "ESS_per_sec": 84.47330241469254,
+      "tau_int_calc": 4.600956126352899,
+      "ESS_per_sec_calc": 84.47330241469254,
+      "badges": []
+    },
+    "notes": "Core THRML (Ising 28x28) thermal algorithm benchmark on GPU (A100)",
+    "_source_file": "results/core-thrml_gpu.json"
+  },
+  {
+    "task": "ising28_uncond",
+    "hardware": "arm (JAX CPU)",
+    "hardware_class": "cpu",
+    "method": "thermal-tvs",
+    "recipe_name": "tvs-cpu-thermal",
+    "commit": "main",
+    "contributor": "SoundSafe-Dev",
+    "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "config": {
+      "H": 28,
+      "W": 28,
+      "steps_per_sample": 2,
+      "warmup": 100,
+      "n_samples": 1000,
+      "chains": 1,
+      "devices": 1,
+      "blocking": "thermal-algorithm",
+      "schedule": "fixed"
+    },
+    "env": {
+      "jax": "0.8.0",
+      "thrml": "thermal-algorithms"
+    },
+    "power_watts_avg": null,
+    "metrics_mean": {
+      "samples_per_sec": 2886.9264300837986,
+      "rho1": 0.05540415644645691,
+      "tau_int": 1.117307643950725,
+      "ESS_per_sec": 2583.8241112141864,
+      "tau_int_calc": 1.117307643950725,
+      "ESS_per_sec_calc": 2583.8241112141864,
+      "badges": [
+        "frontier"
+      ]
+    },
+    "notes": "Thermo-Verifiable Sensing thermal algorithm benchmark on CPU",
+    "_source_file": "results/tvs_cpu.json"
+  },
+  {
+    "task": "ising28_uncond",
+    "hardware": "arm (JAX CPU)",
+    "hardware_class": "cpu",
+    "method": "thermal-tbro",
+    "recipe_name": "tbro-cpu-thermal",
+    "commit": "main",
+    "contributor": "SoundSafe-Dev",
+    "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "config": {
+      "H": 28,
+      "W": 28,
+      "steps_per_sample": 2,
+      "warmup": 100,
+      "n_samples": 1000,
+      "chains": 1,
+      "devices": 1,
+      "blocking": "thermal-algorithm",
+      "schedule": "fixed"
+    },
+    "env": {
+      "jax": "0.8.0",
+      "thrml": "thermal-algorithms"
+    },
+    "power_watts_avg": null,
+    "metrics_mean": {
+      "samples_per_sec": 3639.211961504246,
+      "rho1": 0.12911692261695862,
+      "tau_int": 1.2965195351021133,
+      "ESS_per_sec": 2806.9086990020737,
+      "tau_int_calc": 1.2965195351021133,
+      "ESS_per_sec_calc": 2806.9086990020737,
+      "badges": []
+    },
+    "notes": "Thermal Bandit Resource Orchestrator thermal algorithm benchmark on CPU",
+    "_source_file": "results/tbro_cpu.json"
+  },
+  {
+    "task": "ising28_uncond",
+    "hardware": "arm (JAX CPU)",
+    "hardware_class": "cpu",
+    "method": "thermal-tcf",
+    "recipe_name": "tcf-cpu-thermal",
+    "commit": "main",
+    "contributor": "SoundSafe-Dev",
+    "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "config": {
+      "H": 28,
+      "W": 28,
+      "steps_per_sample": 2,
+      "warmup": 100,
+      "n_samples": 1000,
+      "chains": 1,
+      "devices": 1,
+      "blocking": "thermal-algorithm",
+      "schedule": "fixed"
+    },
+    "env": {
+      "jax": "0.8.0",
+      "thrml": "thermal-algorithms"
+    },
+    "power_watts_avg": null,
+    "metrics_mean": {
+      "samples_per_sec": 3750.5035799442344,
+      "rho1": -0.29496341943740845,
+      "tau_int": 0.5444451711762575,
+      "ESS_per_sec": 6888.67084970445,
+      "tau_int_calc": 0.5444451711762575,
+      "ESS_per_sec_calc": 6888.67084970445,
+      "badges": [
+        "frontier"
+      ]
+    },
+    "notes": "Thermodynamic Causal Fusion thermal algorithm benchmark on CPU",
+    "_source_file": "results/tcf_cpu.json"
   }
 ]

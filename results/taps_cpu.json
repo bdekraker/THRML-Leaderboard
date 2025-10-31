@@ -1,0 +1,38 @@
+{
+  "task": "ising28_uncond",
+  "hardware": "arm (JAX CPU)",
+  "hardware_class": "cpu",
+  "method": "thermal-taps",
+  "recipe_name": "taps-cpu-thermal",
+  "commit": "main",
+  "contributor": "SoundSafe-Dev",
+  "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "config": {
+    "H": 28,
+    "W": 28,
+    "steps_per_sample": 2,
+    "warmup": 100,
+    "n_samples": 1000,
+    "chains": 1,
+    "devices": 1,
+    "blocking": "thermal-algorithm",
+    "schedule": "fixed"
+  },
+  "env": {
+    "jax": "0.8.0",
+    "thrml": "thermal-algorithms"
+  },
+  "power_watts_avg": null,
+  "metrics_mean": {
+    "samples_per_sec": 3154.514150392387,
+    "rho1": -0.27614521980285645,
+    "tau_int": 0.5672197560000007,
+    "ESS_per_sec": 5561.361565820325
+  },
+  "notes": "Thermodynamic Active Perception Scheduling thermal algorithm benchmark on CPU"
+}
