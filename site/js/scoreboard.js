@@ -78,6 +78,12 @@ function badgeFormatter(cell) {
     .join(" ");
 }
 
+function detailsFormatter(cell) {
+  const url = cell.getValue();
+  if (!url) return "";
+  return `<a class="link-pill" href="${url}" target="_blank" rel="noreferrer">GitHub</a>`;
+}
+
 function buildFallbackTable(data) {
   const container = byId("scoreboard");
   container.innerHTML = "";
@@ -91,6 +97,7 @@ function buildFallbackTable(data) {
       <th>Task</th>
       <th>Hardware</th>
       <th>Blocking</th>
+      <th>Details</th>
       <th>Recipe</th>
       <th>Contributor</th>
     </tr>`;
@@ -104,6 +111,7 @@ function buildFallbackTable(data) {
       <td>${row.task || ""}</td>
       <td>${row.hardware_class || ""}</td>
       <td>${row.config?.blocking || ""}</td>
+      <td>${row.submission_url ? `<a class="link-pill" href="${row.submission_url}" target="_blank" rel="noreferrer">GitHub</a>` : ""}</td>
       <td>${row.recipe_name || row.method || ""}</td>
       <td>${row.contributor || ""}</td>
     `;
@@ -127,6 +135,17 @@ function makeTable(TabulatorLib, data) {
       { title: "Task", field: "task", width: 140 },
       { title: "Hardware", field: "hardware_class", width: 110 },
       { title: "Blocking", field: "config.blocking", width: 140 },
+      {
+        title: "Details",
+        field: "submission_url",
+        formatter: detailsFormatter,
+        width: 110,
+        hozAlign: "center",
+        cellClick: (_e, cell) => {
+          const url = cell.getValue();
+          if (url) window.open(url, "_blank", "noopener");
+        }
+      },
       { title: "Recipe", field: "recipe_name", width: 180 },
       { title: "Contributor", field: "contributor", width: 160 },
       {
@@ -158,12 +177,18 @@ async function main() {
 
   hydrateFilters(raw);
 
-  const TabulatorLib = window.Tabulator;
+  const tabulatorLoader = import("https://cdn.jsdelivr.net/npm/tabulator-tables@5.6.2/dist/js/tabulator_min.js")
+    .then(() => window.Tabulator)
+    .catch(err => {
+      console.warn("[scoreboard] Failed to import Tabulator, using fallback table.", err);
+      return null;
+    });
+
+  const TabulatorLib = await tabulatorLoader;
   let table = null;
   if (TabulatorLib) {
     table = makeTable(TabulatorLib, raw);
   } else {
-    console.warn("[scoreboard] Tabulator not found, rendering fallback table.");
     buildFallbackTable(raw);
   }
 

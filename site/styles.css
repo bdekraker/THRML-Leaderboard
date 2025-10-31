@@ -135,6 +135,24 @@ input[type="checkbox"] {
   color: var(--quality);
 }
 
+.link-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(102, 217, 239, 0.15);
+  color: var(--accent);
+  border: 1px solid rgba(102, 217, 239, 0.35);
+  font-size: 12px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.link-pill:hover {
+  background: rgba(102, 217, 239, 0.35);
+  border-color: rgba(102, 217, 239, 0.6);
+}
+
 .tabulator {
   background: var(--card);
   border: 1px solid var(--line);

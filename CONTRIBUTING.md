@@ -18,7 +18,8 @@ Thanks for sharing your results! Follow the steps below to add a benchmark entry
    cp results/sample_checkerboard_cpu.json results/<your_recipe>.json
    ```
 2. **Edit the new file** with your run details:
-   - `recipe_name`, `method`, `commit`, `contributor`, `submission_url`
+   - `recipe_name`, `method`, `commit`, `contributor`, `submission_url`  
+     *(Optional GitHub link: `https://github.com/...` or `https://gist.github.com/...` so the leaderboard can display a “GitHub” pill pointing to your repo/notebook.)*
    - `seeds` (list of random seeds used)
    - `config` (H/W, J, beta, steps_per_sample, warmup, n_samples, chains, devices, blocking, schedule, clamp, etc.)
      - `metrics_mean.samples_per_sec` and `metrics_mean.rho1` (validator recomputes τ/ESS)
@@ -146,6 +147,8 @@ The community goal is to surface the recipes and insights that make thermodynami
 - **Reusable schedules/clamping patterns** — gems others can copy into their own runs, especially as we migrate from CPU experiments to GPU-accelerated workflows.
 
 THRML-Testing already generates these assets (mixing curves, inpainting collages, throughput charts). Add your JSON to the scoreboard, point folks to the artifacts, and help us build a library of high-quality thermodynamic ML baselines.
+
+> Tip — populate `submission_url` with a GitHub repo or gist. The leaderboard shows a GitHub badge and row-click opens your write-up or code.
 
 ---
 
