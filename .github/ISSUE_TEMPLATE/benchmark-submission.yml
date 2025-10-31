@@ -1,0 +1,88 @@
+name: Benchmark submission
+description: Add a new scoreboard entry (recipe, metrics, figures)
+title: "[bench] <task> <recipe_name> by <handle>"
+labels: ["benchmark"]
+body:
+  - type: input
+    id: contributor
+    attributes:
+      label: Contributor (GitHub or X handle)
+      placeholder: "@yourhandle"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: task
+    attributes:
+      label: Task
+      options:
+        - ising28_uncond
+        - ising64_uncond
+        - potts28_uncond
+        - conditional_inpaint
+        - rbm_mnist
+    validations:
+      required: true
+
+  - type: input
+    id: hardware
+    attributes:
+      label: Hardware
+      placeholder: "AMD 7950X / NVIDIA L4 / A100-80GB"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: hardware_class
+    attributes:
+      label: Hardware class
+      options:
+        - cpu
+        - 1xL4
+        - 1xA100
+        - multi-gpu
+        - tpu
+        - other
+    validations:
+      required: true
+
+  - type: input
+    id: method
+    attributes:
+      label: Method / Recipe name
+      placeholder: "checkerboard-sps2"
+    validations:
+      required: true
+
+  - type: textarea
+    id: config
+    attributes:
+      label: Key config
+      description: H,W,J,beta,steps_per_sample,warmup,chains,devices,blocking,schedule (JSON or bullet list)
+    validations:
+      required: true
+
+  - type: textarea
+    id: metrics
+    attributes:
+      label: Metrics summary
+      description: samples/sec, rho1, tau_int, ESS/sec (+ optional cnn_acc/FID, power_watts_avg)
+    validations:
+      required: true
+
+  - type: input
+    id: results_file
+    attributes:
+      label: Results JSON path
+      placeholder: "scoreboard/results/my_submission.json"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: extras
+    attributes:
+      label: Extras
+      options:
+        - label: Included chains scaling (≥3 points)
+        - label: Included J sweep (0.3 and ≥ one of 0.5/0.6)
+        - label: Included power measurement (optional)

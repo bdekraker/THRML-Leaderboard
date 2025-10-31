@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>THRML Scoreboard</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@5.6.2/dist/css/tabulator.min.css" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="brand">
+      <h1>THRML Scoreboard</h1>
+      <div class="sub">ESS/sec • Pareto • Scaling • Robustness</div>
+    </div>
+    <nav>
+      <a href="https://github.com/bdekraker/THRML-Leaderboard" target="_blank" rel="noreferrer">Repo</a>
+      <a href="../docs/metrics.md">Metrics</a>
+      <a href="../docs/evaluation.md">Badges</a>
+      <a href="../CONTRIBUTING.md">Contribute</a>
+    </nav>
+  </header>
+
+  <section class="filters">
+    <label>Task
+      <select id="flt-task">
+        <option value="">All</option>
+      </select>
+    </label>
+    <label>Hardware
+      <select id="flt-hw">
+        <option value="">All</option>
+        <option>cpu</option><option>1xL4</option><option>1xA100</option>
+        <option>multi-gpu</option><option>tpu</option><option>other</option>
+      </select>
+    </label>
+    <label>Blocking
+      <select id="flt-blocking">
+        <option value="">All</option>
+      </select>
+    </label>
+    <label><input type="checkbox" id="flt-frontier" /> Frontier only</label>
+    <label><input type="checkbox" id="flt-scaling" /> Has scaling</label>
+    <label><input type="checkbox" id="flt-jsweep" /> Has J-sweep</label>
+  </section>
+
+  <section class="charts">
+    <div class="chart-card">
+      <h3>Pareto: ESS/sec vs samples/sec</h3>
+      <div id="chart-pareto" class="chart"></div>
+    </div>
+    <div class="chart-card">
+      <h3>Scaling: chains → ESS/sec (log–log)</h3>
+      <div id="chart-scaling" class="chart"></div>
+    </div>
+    <div class="chart-card">
+      <h3>J-sweep: robustness vs coupling J</h3>
+      <div id="chart-jsweep" class="chart"></div>
+    </div>
+  </section>
+
+  <section class="table-wrap">
+    <h3>Leaderboard</h3>
+    <div id="scoreboard"></div>
+    <div class="legend">
+      <span class="badge frontier">frontier</span>
+      <span class="badge scales">scales_well</span>
+      <span class="badge robust">robust_highJ</span>
+      <span class="badge quality">quality_jump</span>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tabulator-tables@5.6.2/dist/js/tabulator.min.js"></script>
+
+  <script type="module" src="./js/scoreboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+name: Scoreboard
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'scoreboard/results/**'
+      - 'scoreboard/scripts/**'
+      - 'scoreboard/site/**'
+      - 'scoreboard/.github/workflows/scoreboard.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r scoreboard/requirements.txt
+
+      - name: Validate & aggregate
+        run: |
+          cd scoreboard
+          python scripts/validate_results.py
+          python scripts/build_scoreboard.py
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: scoreboard/site
+
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

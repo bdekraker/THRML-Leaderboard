@@ -1,0 +1,281 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "THRML Benchmark Submission",
+  "type": "object",
+  "required": [
+    "task",
+    "hardware",
+    "hardware_class",
+    "method",
+    "commit",
+    "contributor",
+    "seeds",
+    "config",
+    "metrics_mean"
+  ],
+  "properties": {
+    "task": {
+      "type": "string",
+      "enum": [
+        "ising28_uncond",
+        "ising64_uncond",
+        "potts28_uncond",
+        "conditional_inpaint",
+        "rbm_mnist"
+      ]
+    },
+    "hardware": {
+      "type": "string"
+    },
+    "hardware_class": {
+      "type": "string",
+      "enum": [
+        "cpu",
+        "1xL4",
+        "1xA100",
+        "multi-gpu",
+        "tpu",
+        "other"
+      ]
+    },
+    "method": {
+      "type": "string"
+    },
+    "recipe_name": {
+      "type": "string"
+    },
+    "commit": {
+      "type": "string"
+    },
+    "contributor": {
+      "type": "string"
+    },
+    "submission_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "seeds": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "minItems": 1
+    },
+    "config": {
+      "type": "object",
+      "required": [
+        "H",
+        "W",
+        "steps_per_sample",
+        "warmup",
+        "chains",
+        "devices",
+        "blocking",
+        "schedule"
+      ],
+      "properties": {
+        "H": {
+          "type": "integer"
+        },
+        "W": {
+          "type": "integer"
+        },
+        "J": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "beta": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "steps_per_sample": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "warmup": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "n_samples": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "chains": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "devices": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "blocking": {
+          "type": "string"
+        },
+        "schedule": {
+          "type": "string"
+        },
+        "clamp": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "env": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "power_watts_avg": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "metrics_mean": {
+      "type": "object",
+      "required": [
+        "samples_per_sec",
+        "rho1",
+        "tau_int",
+        "ESS_per_sec"
+      ],
+      "properties": {
+        "samples_per_sec": {
+          "type": "number",
+          "minimum": 0
+        },
+        "rho1": {
+          "type": "number",
+          "minimum": -0.999,
+          "maximum": 0.999
+        },
+        "tau_int": {
+          "type": "number",
+          "minimum": 0
+        },
+        "ESS_per_sec": {
+          "type": "number",
+          "minimum": 0
+        },
+        "ESS_per_J": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "pll": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "edge_corr_L1": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "cnn_acc": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "FID": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "nll_ais": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "ssim": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "psnr": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        }
+      }
+    },
+    "scaling": {
+      "type": "object",
+      "properties": {
+        "chains_list": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "ESS_per_sec_list": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "samples_per_sec_list": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "J_sweep": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "J",
+          "ESS_per_sec",
+          "rho1"
+        ],
+        "properties": {
+          "J": {
+            "type": "number"
+          },
+          "ESS_per_sec": {
+            "type": "number"
+          },
+          "rho1": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "figures": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

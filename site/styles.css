@@ -1,0 +1,151 @@
+:root {
+  --bg: #0b0d10;
+  --fg: #e8eef7;
+  --muted: #99a3ad;
+  --card: #12161b;
+  --line: #1c232b;
+  --accent: #66d9ef;
+  --frontier: #ffd166;
+  --scales: #06d6a0;
+  --robust: #ef476f;
+  --quality: #118ab2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 14px/1.45 "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--line);
+  background: #0d1117;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.nav .brand h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.nav .brand .sub {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.nav nav a {
+  margin-left: 14px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.filters label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+}
+
+select,
+input[type="checkbox"] {
+  background: var(--card);
+  color: var(--fg);
+  border: 1px solid var(--line);
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 16px;
+  padding: 16px 20px;
+}
+
+.chart-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.chart {
+  width: 100%;
+  height: 320px;
+}
+
+.table-wrap {
+  padding: 16px 20px 60px;
+}
+
+.legend {
+  margin-top: 10px;
+  color: var(--muted);
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 8px;
+  margin-right: 6px;
+  border-radius: 999px;
+  font-size: 12px;
+  border: 1px solid var(--line);
+  background: #0f1318;
+}
+
+.badge.frontier {
+  border-color: var(--frontier);
+  color: var(--frontier);
+}
+
+.badge.scales {
+  border-color: var(--scales);
+  color: var(--scales);
+}
+
+.badge.robust {
+  border-color: var(--robust);
+  color: var(--robust);
+}
+
+.badge.quality {
+  border-color: var(--quality);
+  color: var(--quality);
+}
+
+.tabulator {
+  background: var(--card);
+  border: 1px solid var(--line);
+}
+
+.tabulator .tabulator-header,
+.tabulator .tabulator-footer {
+  background: #0f141a;
+}
+
+.tabulator-col,
+.tabulator-row {
+  border-color: var(--line);
+}
