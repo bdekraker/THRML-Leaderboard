@@ -1,5 +1,9 @@
-/* global Tabulator */
 import { renderPareto, renderScaling, renderJSweep } from "./charts.js";
+
+const TabulatorLib = window.Tabulator;
+if (!TabulatorLib) {
+  throw new ReferenceError("Tabulator global not found. Ensure Tabulator script loads before scoreboard.js.");
+}
 
 function byId(id) {
   return document.getElementById(id);
@@ -80,7 +84,7 @@ function badgeFormatter(cell) {
 }
 
 function makeTable(data) {
-  return new Tabulator("#scoreboard", {
+  return new TabulatorLib("#scoreboard", {
     data,
     height: "520px",
     layout: "fitColumns",
