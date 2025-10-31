@@ -21,9 +21,13 @@ Thanks for sharing your results! Follow the steps below to add a benchmark entry
    - `recipe_name`, `method`, `commit`, `contributor`, `submission_url`
    - `seeds` (list of random seeds used)
    - `config` (H/W, J, beta, steps_per_sample, warmup, n_samples, chains, devices, blocking, schedule, clamp, etc.)
-   - `metrics_mean.samples_per_sec` and `metrics_mean.rho1` (validator recomputes τ/ESS)
-   - Optional: fill in `scaling` (chains vs throughput) and `J_sweep` to unlock badges.
+     - `metrics_mean.samples_per_sec` and `metrics_mean.rho1` (validator recomputes τ/ESS)
+     - Optional: fill in `scaling` (chains vs throughput) and `J_sweep` to unlock badges.
 3. **Keep the schema nearby** (`results/schema/benchmark.schema.json`) for field definitions.
+
+> **Hardware class tip**  
+> Use one of the canonical values so your run shows up in the filters:  
+> `cpu`, `1x4090`, `1x4080`, `1x4070`, `1x3090`, `1x3080`, `1xL4`, `1xL40`, `1xL40S`, `1xA100`, `1xH100`, `multi-gpu`, `tpu`, `other`.
 
 > Need canonical metrics? Run the provided harness:
 > ```bash
