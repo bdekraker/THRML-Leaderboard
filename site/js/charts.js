@@ -1,5 +1,31 @@
 /* global vegaEmbed */
 
+const BASE_THEME = {
+  config: {
+    background: "#141414",
+    view: { stroke: "transparent" },
+    axis: {
+      labelColor: "#e8eef7",
+      titleColor: "#e8eef7",
+      gridColor: "#2a2a2a",
+      domainColor: "#3a3f44",
+      tickColor: "#3a3f44"
+    },
+    legend: {
+      labelColor: "#e8eef7",
+      titleColor: "#e8eef7"
+    },
+    header: {
+      labelColor: "#e8eef7",
+      titleColor: "#e8eef7"
+    },
+    title: {
+      color: "#e8eef7",
+      subtitleColor: "#99a3ad"
+    }
+  }
+};
+
 function paretoSpec(data) {
   return {
     $schema: "https://vega.github.io/schema/vega-lite/v5.json",
@@ -49,7 +75,8 @@ function paretoSpec(data) {
           stroke: { value: "#ffffff" }
         }
       }
-    ]
+    ],
+    ...BASE_THEME
   };
 }
 
@@ -70,7 +97,8 @@ function scalingSpec(series) {
         { field: "chains" },
         { field: "ESS_per_sec" }
       ]
-    }
+    },
+    ...BASE_THEME
   };
 }
 
@@ -90,7 +118,8 @@ function jSweepSpec(series) {
         { field: "J" },
         { field: "ESS_per_sec" }
       ]
-    }
+    },
+    ...BASE_THEME
   };
 }
 
