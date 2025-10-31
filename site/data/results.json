@@ -1,6 +1,92 @@
 [
   {
     "task": "ising28_uncond",
+    "hardware": "AMD Ryzen 9 7950X (WSL2, JAX CPU backend)",
+    "hardware_class": "cpu",
+    "method": "block-gibbs",
+    "recipe_name": "cpu-checkerboard-sps4",
+    "commit": "local-run",
+    "contributor": "@bdekraker",
+    "submission_url": null,
+    "seeds": [
+      0
+    ],
+    "config": {
+      "H": 28,
+      "W": 28,
+      "J": 0.3,
+      "beta": 1.0,
+      "steps_per_sample": 4,
+      "warmup": 100,
+      "n_samples": 128,
+      "chains": 4,
+      "devices": 1,
+      "blocking": "checkerboard",
+      "schedule": "fixed"
+    },
+    "env": {
+      "jax": "0.4.x",
+      "thrml": "workspace local"
+    },
+    "power_watts_avg": null,
+    "metrics_mean": {
+      "samples_per_sec": 579.0697515387598,
+      "rho1": 0.4137003239393893,
+      "tau_int": 0.0,
+      "ESS_per_sec": 0.0,
+      "tau_int_calc": 2.411224808170017,
+      "ESS_per_sec_calc": 240.15585339727858,
+      "badges": [
+        "frontier"
+      ],
+      "scaling_slope": 0.7788527422308731,
+      "robustJ_ratio": 0.12151532835495527
+    },
+    "scaling": {
+      "chains_list": [
+        1,
+        2,
+        4
+      ],
+      "ESS_per_sec_list": [
+        81.74089606535193,
+        123.97114757745958,
+        240.63315735573033
+      ],
+      "samples_per_sec_list": [
+        223.6901550583005,
+        316.17196941522684,
+        579.0697515387598
+      ]
+    },
+    "J_sweep": [
+      {
+        "J": 0.3,
+        "ESS_per_sec": 240.63315735573033,
+        "rho1": 0.4137003239393893
+      },
+      {
+        "J": 0.4,
+        "ESS_per_sec": 38.706358969987576,
+        "rho1": 0.8798135662362859
+      },
+      {
+        "J": 0.5,
+        "ESS_per_sec": 20.74305399157495,
+        "rho1": 0.9312908815629974
+      },
+      {
+        "J": 0.6,
+        "ESS_per_sec": 37.738180266767436,
+        "rho1": 0.8798670116721135
+      }
+    ],
+    "figures": [],
+    "notes": "Benchmark collected with pipelines/bench.py on WSL2 CPU; single-seed run (seed=0).",
+    "_source_file": "results\\cpu_checkerboard_sps4.json"
+  },
+  {
+    "task": "ising28_uncond",
     "hardware": "AMD 7950X (WSL2, JAX CPU)",
     "hardware_class": "cpu",
     "method": "block-gibbs",
@@ -39,9 +125,7 @@
       "FID": null,
       "tau_int_calc": 4.006257822277847,
       "ESS_per_sec_calc": 145.94667291471416,
-      "badges": [
-        "frontier"
-      ],
+      "badges": [],
       "scaling_slope": 0.5818874362899131,
       "robustJ_ratio": 0.21736158578263837
     },
@@ -84,6 +168,6 @@
       "outputs/bench_chain_scaling.png"
     ],
     "notes": "CPU baseline; good scaling to 4 chains.",
-    "_source_file": "results/sample_checkerboard_cpu.json"
+    "_source_file": "results\\sample_checkerboard_cpu.json"
   }
 ]
