@@ -23,6 +23,10 @@
 
 SoundSafe processes thousands of audio streams simultaneously, requiring algorithms that can operate at **ultra-low power** (Joules per token) while maintaining high detection accuracy. This submission demonstrates 10 thermodynamic algorithms designed specifically for these use cases, showing **61-99% energy improvements** over baseline GPU methods.
 
+![Energy Efficiency Comparison](energy_comparison.png)
+
+*Energy efficiency comparison showing orders of magnitude improvement with Extropic hardware*
+
 ---
 
 ## 🔬 The 10 Thermodynamic Algorithms
@@ -44,6 +48,10 @@ We developed 10 novel algorithms built on THRML's blocked Gibbs sampling and dis
 | 9 | Thermo-Verifiable Sensing | **TVS** | Watermarking using thermal randomness | Audio watermarking & provenance |
 | 10 | Reservoir-EBM Front-End | **REF** | Low-power feature extraction | Weapon/aggression feature extraction |
 
+![Intelligence per Watt](intelligence_per_watt.png)
+
+*Performance efficiency comparison demonstrating intelligence per watt advantages*
+
 ---
 
 ## 📊 Detailed Algorithm Descriptions & Test Results
@@ -64,7 +72,7 @@ We developed 10 novel algorithms built on THRML's blocked Gibbs sampling and dis
 - **Energy Improvement**: 61.1% reduction vs baseline GPU (projected)
 - **Intelligence Improvement**: 183.3% increase in detection accuracy (projected)
 
-![Energy Comparison](energy_comparison.png)
+*SRSL achieves significant improvements in both energy efficiency and detection accuracy through optimal β selection*
 
 ---
 
@@ -84,7 +92,7 @@ We developed 10 novel algorithms built on THRML's blocked Gibbs sampling and dis
 - **Energy Improvement**: 73.3% reduction vs baseline GPU (projected)
 - **Throughput**: Excellent mixing properties with negative rho1
 
-![Throughput Comparison](throughput_comparison.png)
+*TAPS demonstrates high throughput with excellent mixing properties*
 
 ---
 
@@ -251,6 +259,10 @@ We developed 10 novel algorithms built on THRML's blocked Gibbs sampling and dis
 
 **CPU Summary**: All algorithms show excellent autocorrelation properties (rho1 < 0.5 for most), with tau_int values indicating efficient mixing. ESS_per_sec ranges from 40-4,124, demonstrating high effective sample generation.
 
+![Pareto Frontier CPU](pareto_frontier_cpu.png)
+
+*CPU performance showing throughput vs efficiency trade-offs*
+
 ### GPU Benchmarks (NVIDIA A100-SXM4-80GB x8, JAX CUDA Backend)
 
 | Algorithm | Samples/sec | rho1 | tau_int | ESS/sec |
@@ -268,9 +280,9 @@ We developed 10 novel algorithms built on THRML's blocked Gibbs sampling and dis
 
 **GPU Summary**: GPU benchmarks show consistent tau_int values (~4.4), indicating good mixing properties. Throughput ranges from 68-834 samples/sec. Autocorrelation values (rho1 ~0.6-0.67) are reasonable for MCMC methods.
 
-![Pareto Frontier CPU](pareto_frontier_cpu.png)
-
 ![Pareto Frontier GPU](pareto_frontier_gpu.png)
+
+*GPU performance showing throughput vs efficiency trade-offs on A100 hardware*
 
 ---
 
@@ -302,6 +314,22 @@ Our benchmark comparisons demonstrate significant energy improvements:
 - **REF**: 73.3% energy reduction, 140% intelligence improvement
 
 **Average Improvement**: 67.2% energy reduction, 118.9% intelligence improvement
+
+![Energy Reduction Percentages](improvement_percentages.png)
+
+*Energy reduction percentages showing thermal algorithms achieve 61-73% improvements, with Extropic projected at 99%+*
+
+![Intelligence Improvement](intelligence_improvement.png)
+
+*Intelligence improvement percentages - thermal algorithms show 60-183% improvements, Extropic projected at 84-217%*
+
+![Intelligence per Watt Improvement](intelligence_per_watt_improvement.png)
+
+*Intelligence per watt improvements (log scale) - Extropic shows orders of magnitude improvements (up to 84,000%+)*
+
+![Throughput Comparison](throughput_comparison.png)
+
+*Throughput comparison showing token processing rates across all three platforms*
 
 ---
 
