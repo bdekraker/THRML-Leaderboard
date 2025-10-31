@@ -1,0 +1,56 @@
+{
+  "task": "ising28_uncond",
+  "hardware": "AMD Ryzen 9 7950X (WSL2, JAX CPU backend)",
+  "hardware_class": "cpu",
+  "method": "block-gibbs",
+  "recipe_name": "cpu-checkerboard-sps4",
+  "commit": "local-run",
+  "contributor": "@bdekraker",
+  "submission_url": null,
+  "seeds": [0],
+  "config": {
+    "H": 28,
+    "W": 28,
+    "J": 0.30,
+    "beta": 1.0,
+    "steps_per_sample": 4,
+    "warmup": 100,
+    "n_samples": 128,
+    "chains": 4,
+    "devices": 1,
+    "blocking": "checkerboard",
+    "schedule": "fixed"
+  },
+  "env": {
+    "jax": "0.4.x",
+    "thrml": "workspace local"
+  },
+  "power_watts_avg": null,
+  "metrics_mean": {
+    "samples_per_sec": 579.0697515387598,
+    "rho1": 0.4137003239393893,
+    "tau_int": 0.0,
+    "ESS_per_sec": 0.0
+  },
+  "scaling": {
+    "chains_list": [1, 2, 4],
+    "ESS_per_sec_list": [
+      81.74089606535193,
+      123.97114757745958,
+      240.63315735573033
+    ],
+    "samples_per_sec_list": [
+      223.6901550583005,
+      316.17196941522684,
+      579.0697515387598
+    ]
+  },
+  "J_sweep": [
+    {"J": 0.30, "ESS_per_sec": 240.63315735573033, "rho1": 0.4137003239393893},
+    {"J": 0.40, "ESS_per_sec": 38.706358969987576, "rho1": 0.8798135662362859},
+    {"J": 0.50, "ESS_per_sec": 20.74305399157495, "rho1": 0.9312908815629974},
+    {"J": 0.60, "ESS_per_sec": 37.738180266767436, "rho1": 0.8798670116721135}
+  ],
+  "figures": [],
+  "notes": "Benchmark collected with pipelines/bench.py on WSL2 CPU; single-seed run (seed=0)."
+}

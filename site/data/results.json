@@ -84,6 +84,6 @@
       "outputs/bench_chain_scaling.png"
     ],
     "notes": "CPU baseline; good scaling to 4 chains.",
-    "_source_file": "results\\sample_checkerboard_cpu.json"
+    "_source_file": "results/sample_checkerboard_cpu.json"
   }
 ]
