@@ -1,0 +1,52 @@
+{
+  "task": "ising28_uncond",
+  "hardware": "NVIDIA H200 SXM (RunPod)",
+  "hardware_class": "1xH100",
+  "method": "block-gibbs",
+  "recipe_name": "gpu-checkerboard-sps6",
+  "commit": "runpod-gpu",
+  "contributor": "@bdekraker",
+  "submission_url": "https://github.com/bdekraker/THRML-Testing",
+  "seeds": [0],
+  "config": {
+    "H": 28,
+    "W": 28,
+    "J": 0.3,
+    "beta": 1.0,
+    "steps_per_sample": 6,
+    "warmup": 100,
+    "n_samples": 128,
+    "chains": 8,
+    "devices": 1,
+    "blocking": "checkerboard",
+    "schedule": "fixed"
+  },
+  "env": {
+    "jax": "0.8.0",
+    "thrml": "workspace gpu"
+  },
+  "power_watts_avg": null,
+  "metrics_mean": {
+    "samples_per_sec": 1076.201482488227,
+    "rho1": 0.36164852804128644,
+    "tau_int": 2.1668025315721398,
+    "ESS_per_sec": 508.4959593236357
+  },
+  "scaling": {
+    "chains_list": [4, 8],
+    "ESS_per_sec_list": [289.9770944048449, 508.4959593236357],
+    "samples_per_sec_list": [599.4617638183619, 1076.201482488227]
+  },
+  "J_sweep": [
+    {"J": 0.3, "ESS_per_sec": 508.4959593236357, "rho1": 0.36164852804128644},
+    {"J": 0.45, "ESS_per_sec": 35.30516605369119, "rho1": 0.9361486287175723},
+    {"J": 0.6, "ESS_per_sec": 54.18815390516913, "rho1": 0.8964061706375834}
+  ],
+  "figures": [
+    "outputs/bench_tradeoff_ess.png",
+    "outputs/bench_sps_trends.png",
+    "outputs/bench_chain_scaling.png",
+    "outputs/bench_J_sweep.png"
+  ],
+  "notes": "RunPod GPU sweep: checkerboard blocks, steps_per_sample=6, chains=8 achieved the highest ESS/sec. Includes scaling and J sweep."
+}
