@@ -1,6 +1,13 @@
 ## Contributing to the THRML Scoreboard
 
-Thanks for sharing your results! Follow the steps below to add a benchmark entry and see it live at [thrmlbench.com](https://thrmlbench.com).
+Thanks for sharing your results! Follow the steps below to add a benchmark entry and see it live at [thrmlbench.com](https://thrmlbench.com). If you are just getting started with THRML sampling, the companion repo [**THRML-Testing**](https://github.com/bdekraker/THRML-Testing) (“THRML Speedrun”) contains end-to-end scripts, figures, and benchmark harnesses that produce everything the scoreboard expects.
+
+> **New to THRML?**  
+> THRML-Testing demonstrates:
+> - 28×28 Ising sampling with grids + GIFs  
+> - Mixing curves (autocorr), block ablations, and inpainting  
+> - Unified bench harness emitting JSON + ESS/sec plots (CPU → GPU ready)  
+> Use it as your sandbox, then copy the resulting JSON into this leaderboard.
 
 ---
 
@@ -22,7 +29,30 @@ Thanks for sharing your results! Follow the steps below to add a benchmark entry
 > ```bash
 > python pipelines/bench.py --blocking checkerboard --out outputs/bench_<tag>.json
 > ```
-> Pick the configuration you want to publish and copy the values into your JSON.
+> Pick the configuration you want to publish and copy the values into your JSON.  
+> For a full walkthrough (including figures and plots), see [THRML-Testing quickstart](https://github.com/bdekraker/THRML-Testing#quickstart).
+
+#### Example: CPU baseline from THRML-Testing
+
+From the THRML-Testing repo (WSL/Linux):
+
+```bash
+python pipelines/bench.py --blocking checkerboard --seed 0 --out outputs/bench_cpu_checkerboard.json
+```
+
+The script emits per-run JSON under `outputs/bench_checkerboard_*.json` and prints the metrics. Copy the best configuration into a new file here, e.g. `results/cpu_checkerboard_sps4.json`, and fill in `metrics_mean.samples_per_sec` & `metrics_mean.rho1`. The validator will recompute τ and ESS/sec.
+
+#### Optional GPU run
+
+THRML-Testing includes `docker/Dockerfile.gpu` so you can run the exact same harness on a CUDA box:
+
+```bash
+docker build -t thrml:gpu -f docker/Dockerfile.gpu .
+docker run --gpus all -it --rm -v $PWD:/workspace thrml:gpu bash
+python pipelines/bench.py --blocking checkerboard --seed 0 --out outputs/bench_gpu_checkerboard.json
+```
+
+Copy the GPU JSON entry into this repo as you would for CPU results.
 
 ---
 
@@ -83,10 +113,21 @@ Optional metrics (`cnn_acc`, `FID`, `power_watts_avg`, etc.) enrich analysis and
 - **robust_highJ** – High‑J ESS/sec ≥60 % of the base (or ≥25 % uplift).
 - **quality_jump** – `cnn_acc` within 2 % of real-data baseline (or FID ↓ ≥20 %).
 
+---
+
+### Checklist before you open a PR
+
+- [ ] JSON file added under `results/` (unique filename).
+- [ ] `metrics_mean.samples_per_sec` and `rho1` populated from your run.
+- [ ] Optional fields (`scaling`, `J_sweep`, `power_watts_avg`, quality metrics) filled if available.
+- [ ] `python scripts/validate_results.py` & `python scripts/build_scoreboard.py` completed without errors.
+- [ ] `site/data/results.json` staged alongside your new submission.
+- [ ] Any artifacts/figures generated (e.g. from THRML-Testing) are linked in your notes or submission issue.
 
 ---
 
 ### Need help?
 
 - Check the [Benchmark submission issue template](./.github/ISSUE_TEMPLATE/benchmark-submission.yml).
-- Tag a maintainer or open a discussion if anything is unclear—we’re excited to track your recipes! 
+- Explore [THRML-Testing](https://github.com/bdekraker/THRML-Testing) for ready-to-run scripts, mixing curves, and inpainting examples.
+- Tag a maintainer or open a discussion if anything is unclear—we’re excited to track your recipes!
