@@ -1,0 +1,38 @@
+{
+  "task": "ising28_uncond",
+  "hardware": "arm (JAX CPU)",
+  "hardware_class": "cpu",
+  "method": "thermal-tcf",
+  "recipe_name": "tcf-cpu-thermal",
+  "commit": "main",
+  "contributor": "SoundSafe-Dev",
+  "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "config": {
+    "H": 28,
+    "W": 28,
+    "steps_per_sample": 2,
+    "warmup": 100,
+    "n_samples": 1000,
+    "chains": 1,
+    "devices": 1,
+    "blocking": "thermal-algorithm",
+    "schedule": "fixed"
+  },
+  "env": {
+    "jax": "0.8.0",
+    "thrml": "thermal-algorithms"
+  },
+  "power_watts_avg": null,
+  "metrics_mean": {
+    "samples_per_sec": 3750.5035799442344,
+    "rho1": -0.29496341943740845,
+    "tau_int": 0.5444451711762575,
+    "ESS_per_sec": 6888.67084970445
+  },
+  "notes": "Thermodynamic Causal Fusion thermal algorithm benchmark on CPU"
+}

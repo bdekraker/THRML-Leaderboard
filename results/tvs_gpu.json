@@ -1,0 +1,38 @@
+{
+  "task": "ising28_uncond",
+  "hardware": "NVIDIA A100-SXM4-80GB x8 (JAX CUDA)",
+  "hardware_class": "1xA100",
+  "method": "thermal-gpu-tvs",
+  "recipe_name": "tvs-gpu-thermal",
+  "commit": "main",
+  "contributor": "SoundSafe-Dev",
+  "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "config": {
+    "H": 28,
+    "W": 28,
+    "steps_per_sample": 2,
+    "warmup": 100,
+    "n_samples": 1000,
+    "chains": 1,
+    "devices": 1,
+    "blocking": "thermal-algorithm",
+    "schedule": "fixed"
+  },
+  "env": {
+    "jax": "0.6.0",
+    "thrml": "thermal-algorithms"
+  },
+  "power_watts_avg": null,
+  "metrics_mean": {
+    "samples_per_sec": 464.3448776539751,
+    "rho1": 0.06382984668016434,
+    "tau_int": 1.1363637720211688,
+    "ESS_per_sec": 408.6234435545918
+  },
+  "notes": "Thermo-Verifiable Sensing thermal algorithm benchmark on GPU (A100)"
+}

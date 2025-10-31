@@ -1,0 +1,38 @@
+{
+  "task": "ising28_uncond",
+  "hardware": "NVIDIA A100-SXM4-80GB x8 (JAX CUDA)",
+  "hardware_class": "1xA100",
+  "method": "thermal-gpu-ppts",
+  "recipe_name": "ppts-gpu-thermal",
+  "commit": "main",
+  "contributor": "SoundSafe-Dev",
+  "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "config": {
+    "H": 28,
+    "W": 28,
+    "steps_per_sample": 2,
+    "warmup": 100,
+    "n_samples": 1000,
+    "chains": 1,
+    "devices": 1,
+    "blocking": "thermal-algorithm",
+    "schedule": "fixed"
+  },
+  "env": {
+    "jax": "0.6.0",
+    "thrml": "thermal-algorithms"
+  },
+  "power_watts_avg": null,
+  "metrics_mean": {
+    "samples_per_sec": 447.5723758032464,
+    "rho1": 0.8500851392745972,
+    "tau_int": 12.340905566816186,
+    "ESS_per_sec": 36.267385191467355
+  },
+  "notes": "Probabilistic Phase Time Sync thermal algorithm benchmark on GPU (A100)"
+}

@@ -1,0 +1,38 @@
+{
+  "task": "ising28_uncond",
+  "hardware": "NVIDIA A100-SXM4-80GB x8 (JAX CUDA)",
+  "hardware_class": "1xA100",
+  "method": "thermal-gpu-core-thrml",
+  "recipe_name": "core-thrml-gpu-thermal",
+  "commit": "main",
+  "contributor": "SoundSafe-Dev",
+  "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "config": {
+    "H": 28,
+    "W": 28,
+    "steps_per_sample": 2,
+    "warmup": 100,
+    "n_samples": 1000,
+    "chains": 1,
+    "devices": 1,
+    "blocking": "thermal-algorithm",
+    "schedule": "fixed"
+  },
+  "env": {
+    "jax": "0.6.0",
+    "thrml": "thermal-algorithms"
+  },
+  "power_watts_avg": null,
+  "metrics_mean": {
+    "samples_per_sec": 388.65795825814075,
+    "rho1": 0.6429181098937988,
+    "tau_int": 4.600956126352899,
+    "ESS_per_sec": 84.47330241469254
+  },
+  "notes": "Core THRML (Ising 28x28) thermal algorithm benchmark on GPU (A100)"
+}

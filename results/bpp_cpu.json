@@ -1,0 +1,38 @@
+{
+  "task": "ising28_uncond",
+  "hardware": "arm (JAX CPU)",
+  "hardware_class": "cpu",
+  "method": "thermal-bpp",
+  "recipe_name": "bpp-cpu-thermal",
+  "commit": "main",
+  "contributor": "SoundSafe-Dev",
+  "submission_url": "https://github.com/SoundSafe-Dev/thrml",
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "config": {
+    "H": 28,
+    "W": 28,
+    "steps_per_sample": 2,
+    "warmup": 100,
+    "n_samples": 1000,
+    "chains": 1,
+    "devices": 1,
+    "blocking": "thermal-algorithm",
+    "schedule": "fixed"
+  },
+  "env": {
+    "jax": "0.8.0",
+    "thrml": "thermal-algorithms"
+  },
+  "power_watts_avg": null,
+  "metrics_mean": {
+    "samples_per_sec": 4025.0060155633323,
+    "rho1": -0.012194248847663403,
+    "tau_int": 0.9759053188426114,
+    "ESS_per_sec": 4124.38167704306
+  },
+  "notes": "Boltzmann Policy Planner thermal algorithm benchmark on CPU"
+}
