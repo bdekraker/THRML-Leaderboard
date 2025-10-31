@@ -60,9 +60,9 @@ We developed 10 novel algorithms built on THRML's blocked Gibbs sampling and dis
 
 **Test Results**:
 - **CPU**: 150.71 samples/sec, rho1=0.493, tau_int=2.94, ESS/sec=51.22
-- **GPU**: 388.66 samples/sec, rho1=0.643, tau_int=4.60, ESS/sec=84.47
-- **Energy Improvement**: 61.1% reduction vs baseline GPU
-- **Intelligence Improvement**: 183.3% increase in detection accuracy
+- **GPU**: 22.11 samples/sec, rho1=0.531, tau_int=3.26, ESS/sec=6.77
+- **Energy Improvement**: 61.1% reduction vs baseline GPU (projected)
+- **Intelligence Improvement**: 183.3% increase in detection accuracy (projected)
 
 ![Energy Comparison](energy_comparison.png)
 
@@ -79,10 +79,10 @@ We developed 10 novel algorithms built on THRML's blocked Gibbs sampling and dis
 **Extropic Advantage**: Chip finds optimal sensor subsets via Gibbs sampling, minimizing energy while maintaining detection probability thresholds.
 
 **Test Results**:
-- **CPU**: 232.81 samples/sec, rho1=0.428, tau_int=2.33, ESS/sec=99.92
-- **GPU**: 625.62 samples/sec, rho1=0.639, tau_int=4.55, ESS/sec=137.49
-- **Energy Improvement**: 73.3% reduction vs baseline GPU
-- **Throughput**: 2500 tokens/sec on thermal algorithms
+- **CPU**: 3,154.5 samples/sec, rho1=-0.276, tau_int=0.57, ESS/sec=5,561.4
+- **GPU**: 454.0 samples/sec, rho1=-0.279, tau_int=0.56, ESS/sec=805.1
+- **Energy Improvement**: 73.3% reduction vs baseline GPU (projected)
+- **Throughput**: Excellent mixing properties with negative rho1
 
 ![Throughput Comparison](throughput_comparison.png)
 
@@ -99,10 +99,10 @@ We developed 10 novel algorithms built on THRML's blocked Gibbs sampling and dis
 **Extropic Advantage**: Chip's Gibbs sampling naturally samples from Boltzmann distributions, minimizing risky policy selections.
 
 **Test Results**:
-- **CPU**: 4025.01 samples/sec, rho1=-0.012, tau_int=0.98, ESS/sec=4124.38
-- **GPU**: 833.81 samples/sec, rho1=0.595, tau_int=3.59, ESS/sec=232.27
-- **Energy Improvement**: 66.7% reduction vs baseline
-- **Intelligence Improvement**: 60% increase in policy quality
+- **CPU**: 4,025.0 samples/sec, rho1=-0.012, tau_int=0.98, ESS/sec=4,124.4
+- **GPU**: 467.2 samples/sec, rho1=-0.025, tau_int=0.95, ESS/sec=491.3
+- **Energy Improvement**: 66.7% reduction vs baseline (projected)
+- **Intelligence Improvement**: 60% increase in policy quality (projected)
 
 ---
 
@@ -116,11 +116,9 @@ We developed 10 novel algorithms built on THRML's blocked Gibbs sampling and dis
 
 **Extropic Advantage**: Chip maintains energy fingerprints in hardware. Anomaly checks are simple energy comparisons (ultra-low cost).
 
-**Test Results**:
-- **CPU**: 199.84 samples/sec, rho1=0.401, tau_int=2.49, ESS/sec=80.25
-- **GPU**: 166.53 samples/sec, rho1=0.645, tau_int=4.50, ESS/sec=36.99
-- **Energy Improvement**: 64.3% reduction vs baseline
-- **Intelligence Improvement**: 128.6% increase in anomaly detection accuracy
+**Test Results**: (Note: EFSM benchmark not included in CPU/GPU results - see source repository for full benchmarks)
+- **Energy Improvement**: 64.3% reduction vs baseline (projected)
+- **Intelligence Improvement**: 128.6% increase in anomaly detection accuracy (projected)
 
 ---
 
@@ -135,10 +133,10 @@ We developed 10 novel algorithms built on THRML's blocked Gibbs sampling and dis
 **Extropic Advantage**: Chip's thermal sampling naturally explores resource allocations, finding low-energy configurations that maintain coverage.
 
 **Test Results**:
-- **CPU**: 1598.73 samples/sec, rho1=0.402, tau_int=2.49, ESS/sec=642.06
-- **GPU**: 142.90 samples/sec, rho1=0.651, tau_int=4.38, ESS/sec=32.62
-- **Energy Improvement**: 65.6% reduction vs baseline
-- **Throughput**: 1667 tokens/sec on thermal algorithms
+- **CPU**: 3,639.2 samples/sec, rho1=0.129, tau_int=1.30, ESS/sec=2,806.9
+- **GPU**: 472.3 samples/sec, rho1=0.143, tau_int=1.33, ESS/sec=354.3
+- **Energy Improvement**: 65.6% reduction vs baseline (projected)
+- **Throughput**: Excellent throughput with good mixing (tau_int ~1.3)
 
 ---
 
@@ -153,10 +151,10 @@ We developed 10 novel algorithms built on THRML's blocked Gibbs sampling and dis
 **Extropic Advantage**: Chip naturally enforces Landauer's limit. Updates only occur when entropy reduction exceeds kT ln 2 threshold.
 
 **Test Results**:
-- **CPU**: 119.83 samples/sec, rho1=0.492, tau_int=2.94, ESS/sec=40.73
-- **GPU**: 69.39 samples/sec, rho1=0.663, tau_int=4.38, ESS/sec=15.84
-- **Energy Improvement**: 66.7% reduction vs baseline (via skipped updates)
-- **Skip Rate**: 40-60% of updates skipped when ΔH < threshold
+- **CPU**: 1,330.1 samples/sec, rho1=0.000, tau_int=1.00, ESS/sec=1,330.1
+- **GPU**: 167.3 samples/sec, rho1=0.000, tau_int=1.00, ESS/sec=167.3
+- **Energy Improvement**: 66.7% reduction vs baseline (via skipped updates, projected)
+- **Skip Rate**: 40-60% of updates skipped when ΔH < threshold (projected)
 
 ![Intelligence per Watt](intelligence_per_watt.png)
 
@@ -173,10 +171,11 @@ We developed 10 novel algorithms built on THRML's blocked Gibbs sampling and dis
 **Extropic Advantage**: Chip's thermal dynamics naturally explore causal structures. Perturbations are low-energy operations on the chip.
 
 **Test Results**:
-- **CPU**: 161.44 samples/sec, rho1=0.498, tau_int=2.92, ESS/sec=55.29
-- **GPU**: 142.90 samples/sec, rho1=0.651, tau_int=4.38, ESS/sec=32.62
-- **Energy Improvement**: 67.5% reduction vs baseline
-- **Robustness**: Maintains 90%+ fusion accuracy under 30% modality failures
+- **CPU**: 3,750.5 samples/sec, rho1=-0.295, tau_int=0.54, ESS/sec=6,888.7
+- **GPU**: 455.4 samples/sec, rho1=-0.247, tau_int=0.60, ESS/sec=754.2
+- **Energy Improvement**: 67.5% reduction vs baseline (projected)
+- **Robustness**: Maintains 90%+ fusion accuracy under 30% modality failures (projected)
+- **Note**: Excellent mixing with negative rho1 and very low tau_int
 
 ---
 
@@ -191,10 +190,10 @@ We developed 10 novel algorithms built on THRML's blocked Gibbs sampling and dis
 **Extropic Advantage**: Chip's thermal dynamics naturally synchronize probabilistic phases. No explicit sync messages needed.
 
 **Test Results**:
-- **CPU**: 266.67 samples/sec, rho1=0.428, tau_int=2.33, ESS/sec=114.45
-- **GPU**: 68.57 samples/sec, rho1=0.667, tau_int=4.39, ESS/sec=15.62
-- **Energy Improvement**: 73.3% reduction vs baseline
-- **Overhead**: 10x lower than traditional clock sync protocols
+- **CPU**: 3,062.9 samples/sec, rho1=0.724, tau_int=6.25, ESS/sec=490.4
+- **GPU**: 447.6 samples/sec, rho1=0.850, tau_int=12.34, ESS/sec=36.3
+- **Energy Improvement**: 73.3% reduction vs baseline (projected)
+- **Overhead**: 10x lower than traditional clock sync protocols (projected)
 
 ---
 
@@ -209,10 +208,10 @@ We developed 10 novel algorithms built on THRML's blocked Gibbs sampling and dis
 **Extropic Advantage**: Chip's thermal randomness is cryptographically secure. Watermark generation is native chip operation (ultra-low cost).
 
 **Test Results**:
-- **CPU**: 232.56 samples/sec, rho1=0.428, tau_int=2.33, ESS/sec=99.81
-- **GPU**: 133.33 samples/sec, rho1=0.664, tau_int=4.37, ESS/sec=30.53
-- **Energy Improvement**: 73.3% reduction vs baseline
-- **Bitrate Overhead**: <1% for watermark embedding
+- **CPU**: 2,886.9 samples/sec, rho1=0.055, tau_int=1.12, ESS/sec=2,583.8
+- **GPU**: 464.3 samples/sec, rho1=0.064, tau_int=1.14, ESS/sec=408.6
+- **Energy Improvement**: 73.3% reduction vs baseline (projected)
+- **Bitrate Overhead**: <1% for watermark embedding (projected)
 
 ---
 
@@ -227,10 +226,10 @@ We developed 10 novel algorithms built on THRML's blocked Gibbs sampling and dis
 **Extropic Advantage**: Chip's EBM prior stabilizes features naturally. Feature extraction is low-energy operation.
 
 **Test Results**:
-- **CPU**: 333.33 samples/sec, rho1=0.428, tau_int=2.33, ESS/sec=143.06
-- **GPU**: 142.86 samples/sec, rho1=0.651, tau_int=4.38, ESS/sec=32.62
-- **Energy Improvement**: 73.3% reduction vs baseline
-- **Feature Stability**: 95%+ stable features vs 70% for traditional methods
+- **CPU**: 2,338.0 samples/sec, rho1=0.067, tau_int=1.14, ESS/sec=2,042.9
+- **GPU**: 396.5 samples/sec, rho1=-0.070, tau_int=0.87, ESS/sec=455.9
+- **Energy Improvement**: 73.3% reduction vs baseline (projected)
+- **Feature Stability**: 95%+ stable features vs 70% for traditional methods (projected)
 
 ---
 
@@ -240,16 +239,15 @@ We developed 10 novel algorithms built on THRML's blocked Gibbs sampling and dis
 
 | Algorithm | Samples/sec | rho1 | tau_int | ESS/sec |
 |-----------|------------|------|---------|---------|
-| **BPP** | 4,025.01 | -0.012 | 0.98 | 4,124.38 |
-| **TBRO** | 1,598.73 | 0.402 | 2.49 | 642.06 |
-| **REF** | 333.33 | 0.428 | 2.33 | 143.06 |
-| **PPTS** | 266.67 | 0.428 | 2.33 | 114.45 |
-| **TAPS** | 232.81 | 0.428 | 2.33 | 99.92 |
-| **TVS** | 232.56 | 0.428 | 2.33 | 99.81 |
-| **TCF** | 161.44 | 0.498 | 2.92 | 55.29 |
-| **SRSL** | 150.71 | 0.493 | 2.94 | 51.22 |
-| **EFSM** | 199.84 | 0.401 | 2.49 | 80.25 |
-| **LABI** | 119.83 | 0.492 | 2.94 | 40.73 |
+| **TCF** | 3,750.5 | -0.295 | 0.54 | 6,888.7 |
+| **BPP** | 4,025.0 | -0.012 | 0.98 | 4,124.4 |
+| **TBRO** | 3,639.2 | 0.129 | 1.30 | 2,806.9 |
+| **TAPS** | 3,154.5 | -0.276 | 0.57 | 5,561.4 |
+| **PPTS** | 3,062.9 | 0.724 | 6.25 | 490.4 |
+| **TVS** | 2,886.9 | 0.055 | 1.12 | 2,583.8 |
+| **REF** | 2,338.0 | 0.067 | 1.14 | 2,042.9 |
+| **LABI** | 1,330.1 | 0.000 | 1.00 | 1,330.1 |
+| **SRSL** | 150.7 | 0.493 | 2.94 | 51.2 |
 
 **CPU Summary**: All algorithms show excellent autocorrelation properties (rho1 < 0.5 for most), with tau_int values indicating efficient mixing. ESS_per_sec ranges from 40-4,124, demonstrating high effective sample generation.
 
@@ -257,16 +255,16 @@ We developed 10 novel algorithms built on THRML's blocked Gibbs sampling and dis
 
 | Algorithm | Samples/sec | rho1 | tau_int | ESS/sec |
 |-----------|------------|------|---------|---------|
-| **Core THRML** | 388.66 | 0.643 | 4.60 | 84.47 |
-| **SRSL** | 388.66 | 0.643 | 4.60 | 84.47 |
-| **TAPS** | 625.62 | 0.639 | 4.55 | 137.49 |
-| **BPP** | 833.81 | 0.595 | 3.59 | 232.27 |
-| **TCF** | 142.90 | 0.651 | 4.38 | 32.62 |
-| **TBRO** | 142.90 | 0.651 | 4.38 | 32.62 |
-| **REF** | 142.86 | 0.651 | 4.38 | 32.62 |
-| **PPTS** | 68.57 | 0.667 | 4.39 | 15.62 |
-| **TVS** | 133.33 | 0.664 | 4.37 | 30.53 |
-| **LABI** | 69.39 | 0.663 | 4.38 | 15.84 |
+| **BPP** | 467.2 | -0.025 | 0.95 | 491.3 |
+| **TBRO** | 472.3 | 0.143 | 1.33 | 354.3 |
+| **TVS** | 464.3 | 0.064 | 1.14 | 408.6 |
+| **TAPS** | 454.0 | -0.279 | 0.56 | 805.1 |
+| **TCF** | 455.4 | -0.247 | 0.60 | 754.2 |
+| **PPTS** | 447.6 | 0.850 | 12.34 | 36.3 |
+| **REF** | 396.5 | -0.070 | 0.87 | 455.9 |
+| **Core THRML** | 388.7 | 0.643 | 4.60 | 84.5 |
+| **LABI** | 167.3 | 0.000 | 1.00 | 167.3 |
+| **SRSL** | 22.1 | 0.531 | 3.26 | 6.8 |
 
 **GPU Summary**: GPU benchmarks show consistent tau_int values (~4.4), indicating good mixing properties. Throughput ranges from 68-834 samples/sec. Autocorrelation values (rho1 ~0.6-0.67) are reasonable for MCMC methods.
 
