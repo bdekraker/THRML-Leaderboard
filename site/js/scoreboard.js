@@ -1,10 +1,5 @@
 import { renderPareto, renderScaling, renderJSweep } from "./charts.js";
 
-const TabulatorLib = window.Tabulator;
-if (!TabulatorLib) {
-  throw new ReferenceError("Tabulator global not found. Ensure Tabulator script loads before scoreboard.js.");
-}
-
 function byId(id) {
   return document.getElementById(id);
 }
@@ -16,7 +11,7 @@ function uniqueSorted(values) {
 async function loadData() {
   const res = await fetch("./data/results.json", { cache: "no-store" });
   if (!res.ok) {
-    throw new Error("results.json missing — run validate_results.py");
+    throw new Error(`Failed to load results.json (status ${res.status})`);
   }
   return res.json();
 }
@@ -83,7 +78,42 @@ function badgeFormatter(cell) {
     .join(" ");
 }
 
-function makeTable(data) {
+function buildFallbackTable(data) {
+  const container = byId("scoreboard");
+  container.innerHTML = "";
+  const table = document.createElement("table");
+  table.className = "fallback-table";
+  const thead = document.createElement("thead");
+  thead.innerHTML = `
+    <tr>
+      <th>ESS/sec</th>
+      <th>Samples/sec</th>
+      <th>Task</th>
+      <th>Hardware</th>
+      <th>Blocking</th>
+      <th>Recipe</th>
+      <th>Contributor</th>
+    </tr>`;
+  table.appendChild(thead);
+  const tbody = document.createElement("tbody");
+  data.forEach(row => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${(row.metrics_mean?.ESS_per_sec_calc ?? "").toFixed?.(2) || "—"}</td>
+      <td>${(row.metrics_mean?.samples_per_sec ?? "").toFixed?.(2) || "—"}</td>
+      <td>${row.task || ""}</td>
+      <td>${row.hardware_class || ""}</td>
+      <td>${row.config?.blocking || ""}</td>
+      <td>${row.recipe_name || row.method || ""}</td>
+      <td>${row.contributor || ""}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+  container.appendChild(table);
+}
+
+function makeTable(TabulatorLib, data) {
   return new TabulatorLib("#scoreboard", {
     data,
     height: "520px",
@@ -115,16 +145,42 @@ function makeTable(data) {
 }
 
 async function main() {
-  const raw = await loadData();
+  let raw;
+  try {
+    raw = await loadData();
+    console.log(`[scoreboard] loaded ${raw.length} entries`);
+  } catch (err) {
+    console.error(err);
+    const container = byId("scoreboard");
+    container.innerHTML = `<div class="error">Failed to load results.json. ${err.message}</div>`;
+    return;
+  }
+
   hydrateFilters(raw);
-  const table = makeTable(raw);
+
+  const TabulatorLib = window.Tabulator;
+  let table = null;
+  if (TabulatorLib) {
+    table = makeTable(TabulatorLib, raw);
+  } else {
+    console.warn("[scoreboard] Tabulator not found, rendering fallback table.");
+    buildFallbackTable(raw);
+  }
 
   async function sync() {
     const subset = applyFilters(raw);
-    table.replaceData(subset);
-    await renderPareto(subset);
-    await renderScaling(subset);
-    await renderJSweep(subset);
+    if (table) {
+      table.replaceData(subset);
+    } else {
+      buildFallbackTable(subset);
+    }
+    try {
+      await renderPareto(subset);
+      await renderScaling(subset);
+      await renderJSweep(subset);
+    } catch (err) {
+      console.error("[scoreboard] chart render failed", err);
+    }
   }
 
   ["flt-task", "flt-hw", "flt-blocking", "flt-frontier", "flt-scaling", "flt-jsweep"].forEach(id => {

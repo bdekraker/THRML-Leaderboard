@@ -149,3 +149,28 @@ input[type="checkbox"] {
 .tabulator-row {
   border-color: var(--line);
 }
+
+.fallback-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+}
+
+.fallback-table th,
+.fallback-table td {
+  border: 1px solid var(--line);
+  padding: 6px 8px;
+  text-align: left;
+}
+
+.fallback-table th {
+  background: #0f141a;
+}
+
+.error {
+  padding: 12px;
+  border-radius: 8px;
+  background: #2d1b1b;
+  border: 1px solid #5c2f2f;
+  color: #ffb3b3;
+}
