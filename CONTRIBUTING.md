@@ -56,7 +56,7 @@ Copy the GPU JSON entry into this repo as you would for CPU results.
 
 ---
 
-### 2. Validate locally
+### 2. Validate locally (recommended but optional)
 
 ```bash
 python3 -m pip install -r requirements.txt
@@ -66,6 +66,8 @@ python3 scripts/build_scoreboard.py
 
 * `validate_results.py` checks against the schema, recomputes τ/ESS, and assigns badges.
 * `build_scoreboard.py` refreshes `site/data/results.json`.
+
+If you skip this step, GitHub Actions will still validate and regenerate the site for you—it just means the feedback loop happens after you open the PR instead of locally.
 
 Preview the site if you’d like:
 
@@ -79,7 +81,12 @@ python3 -m http.server --directory site 8000
 ### 3. Commit and submit
 
 ```bash
-git add results/<your_recipe>.json site/data/results.json
+# minimal: rely on GitHub Actions to rebuild site/data/results.json
+git add results/<your_recipe>.json
+
+# optional: include regenerated data if you ran the validators locally
+git add site/data/results.json
+
 git commit -m "Add <hardware> <recipe> benchmark"
 git push
 ```
@@ -120,8 +127,8 @@ Optional metrics (`cnn_acc`, `FID`, `power_watts_avg`, etc.) enrich analysis and
 - [ ] JSON file added under `results/` (unique filename).
 - [ ] `metrics_mean.samples_per_sec` and `rho1` populated from your run.
 - [ ] Optional fields (`scaling`, `J_sweep`, `power_watts_avg`, quality metrics) filled if available.
-- [ ] `python scripts/validate_results.py` & `python scripts/build_scoreboard.py` completed without errors.
-- [ ] `site/data/results.json` staged alongside your new submission.
+- [ ] (Optional) `python scripts/validate_results.py` & `python scripts/build_scoreboard.py` completed without errors.
+- [ ] (Optional) `site/data/results.json` staged if you ran the validators locally.
 - [ ] Any artifacts/figures generated (e.g. from THRML-Testing) are linked in your notes or submission issue.
 
 ---
