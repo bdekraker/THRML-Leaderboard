@@ -4,7 +4,7 @@ A static, GitHub Pages–friendly leaderboard for THRML sampling benchmarks. Con
 
 ## Live site
 
-Live scoreboard: https://bdekraker.github.io/THRML-Leaderboard
+Live scoreboard: https://THRMLbench.com/
 
 ## Repository layout
 
