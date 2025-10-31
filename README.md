@@ -2,7 +2,9 @@
 
 **Fork of**: [bdekraker/THRML-Leaderboard](https://github.com/bdekraker/THRML-Leaderboard)  
 **Original Repository**: https://github.com/bdekraker/THRML-Leaderboard  
-**Source Code**: https://github.com/SoundSafe-Dev/thrml
+**Source Code**: https://github.com/SoundSafe-Dev/thrml  
+**THRML Framework**: Built by [Extropic AI](https://www.extropic.ai/)  
+**Extropic Website**: https://www.extropic.ai/
 
 ---
 
@@ -113,9 +115,27 @@ These algorithms are designed to demonstrate:
 - **Intelligence per watt** advantages
 - **Thermodynamic computing** principles for Extropic hardware
 
+### Extropic Hardware Advantage
+
+All algorithms are optimized for **Extropic's thermodynamic compute silicon chips**:
+- **Thermodynamic compute**: The chips literally thermalize towards low energy states via Gibbs dynamics
+- **Massively parallel Gibbs sampler**: The entire chip effectively operates as a parallel Gibbs sampler
+- **Energy relaxation**: Continuously relaxes toward the equilibrium distribution of the energy function encoded by its weights
+- **Ultra-low power**: Designed for extreme energy efficiency (orders of magnitude better than traditional GPU)
+
+For more information on Extropic hardware: https://www.extropic.ai/
+
 ---
 
 ## 📚 Documentation
+
+### Extropic AI Resources
+
+- **Extropic AI**: https://www.extropic.ai/
+- **THRML Framework**: Built by Extropic AI for thermodynamic computing
+- **Extropic GitHub**: [@Extropic-AI](https://github.com/Extropic-AI) (if available)
+- **THRML Repository**: THRML is the core framework developed by Extropic for blocked Gibbs sampling and energy-based models
+- **Extropic Hardware**: Thermodynamic compute silicon chips that thermalize towards low energy states via Gibbs dynamics
 
 ### Original Repository
 
@@ -178,9 +198,23 @@ Same license as original repository. See original [bdekraker/THRML-Leaderboard](
 
 ## 🙏 Acknowledgments
 
-- **Original Repository**: [bdekraker/THRML-Leaderboard](https://github.com/bdekraker/THRML-Leaderboard)
-- **THRML Framework**: Extropic AI
+### Core Framework
+
+- **THRML Framework**: Developed by [Extropic AI](https://www.extropic.ai/) - A JAX library for building and sampling probabilistic graphical models with focus on efficient block Gibbs sampling and energy-based models
+- **Extropic Hardware**: Thermodynamic compute silicon chips enabling energy-efficient sampling
+- **Original Leaderboard**: [bdekraker/THRML-Leaderboard](https://github.com/bdekraker/THRML-Leaderboard)
+
+### This Submission
+
 - **SoundSafe Project**: https://github.com/SoundSafe-Dev/thrml
+- **10 Thermal Algorithms**: Implemented on top of THRML framework
+- **Benchmarks**: CPU (ARM) and GPU (NVIDIA A100) performance measurements
+
+### Learn More
+
+- **Extropic AI**: https://www.extropic.ai/
+- **THRML**: Core framework for thermodynamic computing (by Extropic)
+- **SoundSafe**: Threat detection system using thermodynamic algorithms
 
 ---
 
