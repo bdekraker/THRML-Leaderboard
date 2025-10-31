@@ -460,8 +460,10 @@ python -m http.server --directory site 8000
 ### Learn More
 
 - **Extropic AI**: https://www.extropic.ai/
-- **THRML**: Core framework for thermodynamic computing (by Extropic)
+- **THRML Framework (GitHub)**: https://github.com/extropic-ai/thrml - Core framework for thermodynamic computing
 - **SoundSafe**: Threat detection system using thermodynamic algorithms
+- **SoundSafe Website**: https://soundsafe.dev (or visit [SoundSafe-Dev GitHub](https://github.com/SoundSafe-Dev))
+- **SoundSafe Repository**: https://github.com/SoundSafe-Dev/thrml - Complete implementation with 10 thermal algorithms
 
 ---
 
