@@ -393,19 +393,6 @@ python -m http.server --directory site 8000
 
 ---
 
-## 📊 Submission Status
-
-**Status**: ✅ Ready for Pull Request  
-**Files**: 19 JSON benchmarks + 1 scoreboard update  
-**Validation**: All files pass schema validation
-
-### Pull Request
-
-**Target**: [bdekraker/THRML-Leaderboard](https://github.com/bdekraker/THRML-Leaderboard)  
-**PR Link**: https://github.com/bdekraker/THRML-Leaderboard/compare/main...SoundSafe-Dev:THRML-Leaderboard:main
-
----
-
 ## 📚 Documentation
 
 ### Extropic AI Resources
@@ -425,21 +412,6 @@ python -m http.server --directory site 8000
 - **Source Repository**: https://github.com/SoundSafe-Dev/thrml
 - **Algorithm Documentation**: See `thrml` repository docs
 - **Extropic Integration**: See `thrml` repository for Extropic silicon mappings
-
----
-
-## 🤝 Contributing to Original
-
-To submit these benchmarks to the main leaderboard:
-
-1. **Create Pull Request** from this fork to [bdekraker/THRML-Leaderboard](https://github.com/bdekraker/THRML-Leaderboard)
-2. **GitHub Actions** will automatically:
-   - Validate all files
-   - Build scoreboard
-   - Deploy to GitHub Pages
-3. **Entry appears** on live leaderboard after PR merge
-
-See `PR_DESCRIPTION.md` for PR description template.
 
 ---
 
