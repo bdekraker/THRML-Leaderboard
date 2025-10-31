@@ -133,6 +133,18 @@ Optional metrics (`cnn_acc`, `FID`, `power_watts_avg`, etc.) enrich analysis and
 
 ---
 
+### What we’re hunting (“Hidden Gold”)
+
+The community goal is to surface the recipes and insights that make thermodynamic sampling truly scale:
+
+- **Block-Gibbs-friendly updates that mix fast** — smart colorings, clamp tricks, or schedules that keep locality but still race through configurations.
+- **Proof via curves** — throughput, ESS/sec, mixing plots, and quality figures that demonstrate why your approach wins (or where it trades off).
+- **Reusable schedules/clamping patterns** — gems others can copy into their own runs, especially as we migrate from CPU experiments to GPU-accelerated workflows.
+
+THRML-Testing already generates these assets (mixing curves, inpainting collages, throughput charts). Add your JSON to the scoreboard, point folks to the artifacts, and help us build a library of high-quality thermodynamic ML baselines.
+
+---
+
 ### Need help?
 
 - Check the [Benchmark submission issue template](./.github/ISSUE_TEMPLATE/benchmark-submission.yml).
